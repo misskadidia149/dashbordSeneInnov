@@ -1,4 +1,6 @@
-<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+<div
+  class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center"
+>
   <c-container breakpoint="md">
     <c-row class="justify-content-center">
       <c-col lg="10" xl="8">
@@ -7,12 +9,20 @@
             <c-card-body>
               <form cForm (ngSubmit)="onSubmit()" #loginForm="ngForm">
                 <h1>Connexion</h1>
-                <p class="text-body-secondary">Veuillez saisir vos identifiants</p>
+                <p class="text-body-secondary">
+                  Veuillez saisir vos identifiants
+                </p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" [(ngModel)]="form.username" name="username" />
+                  <input
+                    autoComplete="username"
+                    cFormControl
+                    placeholder="Username"
+                    [(ngModel)]="form.username"
+                    name="username"
+                  />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -22,7 +32,9 @@
                     autoComplete="current-password"
                     cFormControl
                     placeholder="Password"
-                    [(ngModel)]="form.password" name="password" type="password"
+                    [(ngModel)]="form.password"
+                    name="password"
+                    type="password"
                   />
                 </c-input-group>
                 <c-row>
@@ -40,15 +52,25 @@
               </form>
             </c-card-body>
           </c-card>
-          <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
+          <c-card
+            [ngStyle]="{ 'minWidth.%': 44 }"
+            class="text-white bg-primary py-5"
+          >
             <c-card-body class="text-center">
               <div>
                 <h2>Sign up</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
+                <!-- Ensure there are no binding issues -->
+                <!-- Correct routerLink syntax in HTML -->
+                <button
+                  cButton
+                  class="mt-3"
+                  color="primary"
+                  [routerLink]="['/register']"
+                >
                   Register Now!
                 </button>
               </div>

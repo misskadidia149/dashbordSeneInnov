@@ -1,55 +1,68 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgStyle } from '@angular/common';
+import { Router, RouterModule } from '@angular/router'; // Import RouterModule for navigation
 import { FormsModule } from '@angular/forms';
 import { IconDirective } from '@coreui/icons-angular';
-import { ContainerComponent, RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, FormControlDirective, ButtonDirective } from '@coreui/angular';
+import {
+  ContainerComponent,
+  RowComponent,
+  ColComponent,
+  CardGroupComponent,
+  CardComponent,
+  CardBodyComponent,
+  FormDirective,
+  InputGroupComponent,
+  InputGroupTextDirective,
+  FormControlDirective,
+  ButtonDirective,
+  TextColorDirective,
+} from '@coreui/angular';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: true,
-    imports: [
-       FormsModule,
-        ContainerComponent, 
-        RowComponent, 
-        ColComponent, 
-        CardGroupComponent, 
-        TextColorDirective, 
-        CardComponent, 
-        CardBodyComponent, 
-        FormDirective, 
-        InputGroupComponent, 
-        InputGroupTextDirective, 
-        IconDirective, 
-        FormControlDirective, 
-        ButtonDirective, 
-        NgStyle
-    ]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    RouterModule, // Ensure RouterModule is imported here
+    ContainerComponent,
+    RowComponent,
+    ColComponent,
+    CardGroupComponent,
+    CardComponent,
+    CardBodyComponent,
+    FormDirective,
+    InputGroupComponent,
+    InputGroupTextDirective,
+    IconDirective,
+    FormControlDirective,
+    ButtonDirective,
+    TextColorDirective,
+  ],
 })
 export class LoginComponent {
-
-  // Modèle pour stocker les données du formulaire
+  // Form data model
   form = {
     username: '',
-    password: ''
+    password: '',
   };
 
-  // Injection du service de routage
-  constructor(private router: Router) { }
+  // Inject Router service for navigation
+  constructor(private router: Router) {}
 
-  // Méthode pour gérer la soumission du formulaire
+  // Form submission handler
   onSubmit() {
-    // Logique de validation fictive pour l'exemple
-    const isAuthenticated = this.form.username === 'admin' && this.form.password === 'admin'; // Exemple simple de validation
+    // Example validation logic
+    const isAuthenticated =
+      this.form.username === 'admin' && this.form.password === 'admin';
 
     if (isAuthenticated) {
-      // Redirige vers la page principale après une connexion réussie
-      this.router.navigate(['/dashboard']); // Changez '/dashboard' par la route souhaitée
+      // Navigate to the dashboard on successful login
+      this.router.navigate(['/dashboard']); // Update this route as needed
     } else {
-      // Gère l'échec de la connexion
-      console.error('Authentication failed');
+      // Handle authentication failure
+      console.error('Authentication failed - check username and password');
+      alert('Authentication failed, please try again!');
     }
   }
 }
