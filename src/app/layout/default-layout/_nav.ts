@@ -11,62 +11,61 @@ export const navItems: INavData[] = [
     }
   },
   {
-    name: 'Gestion',
+    name: 'Gestion des Robots',
     title: true
   },
   {
+    name: 'Etat des robots',
+    iconComponent: { name: 'cil-locomotive' },
+    url: '/base/cards'
+  },
+  {
+    name: 'Contrôle à Distance',
+    iconComponent: { name: 'cil-find-in-page' },
+    url: '/charts'
+  },
+  {
+    name: 'Analyse des Données',
+    title: true
+  },
+  {
+    name: 'Rapport des sols',
+    iconComponent: { name: 'cil-chart-pie' },
+    url: '/charts'
+  },
+  {
+    name: 'Historique des analyses',
+    iconComponent: { name: 'cil-description' },
+    url: '/charts'
+  },
+  {
+    name: 'Gestionnaire',
+    title: true
+  },
+
+  {
     name: 'Utilisateurs',
-    url: '/base/tables',
     iconComponent: { name: 'cil-user' },
+    url: '/base/carousel',
     badge: {
       color: 'info',
       text: 'NEW'
     },
-  },
+    },
+  
   {
     name: 'Formations',
-    url: '/buttons',
-    iconComponent: { name: 'cil-description' },
-  },
-  {
-    name: 'Maps',
-    iconComponent: { name: 'cil-chart-pie' },
-    url: '/charts'
+    url: '/base/tables',
+    iconComponent: { name: 'cil-education' },
   },
   {
     name: 'Notifications',
     url: '/notifications',
     iconComponent: { name: 'cil-bell' },
-   
-  },
-  
- 
-  {
-    name: 'Pages',
-    url: '/login',
-    iconComponent: { name: 'cil-star' },
-    children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'nav-icon-bullet'
-      }
-    ]
+    badge: {
+      color: 'danger',
+      text: '+99'
+    },
   },
   {
     title: true,

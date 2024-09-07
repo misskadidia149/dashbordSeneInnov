@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router'; // Import RouterModule for navigation
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Import CommonModule for ngStyle and other common directives
 import { IconDirective } from '@coreui/icons-angular';
 import {
   ContainerComponent,
@@ -23,6 +24,7 @@ import {
   styleUrls: ['./login.component.scss'],
   standalone: true,
   imports: [
+    CommonModule, // Ensure CommonModule is imported here
     FormsModule,
     RouterModule, // Ensure RouterModule is imported here
     ContainerComponent,

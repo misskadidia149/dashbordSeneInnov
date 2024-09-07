@@ -1,7 +1,8 @@
 import { DOCUMENT, NgStyle } from '@angular/common';
 import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ChartOptions } from 'chart.js';
+import { ChartData, ChartOptions } from 'chart.js';
+
 import {
   AvatarComponent,
   ButtonDirective,
@@ -41,7 +42,7 @@ interface IUser {
 }
 
 @Component({
-  templateUrl: 'dashboard.component.html',
+  templateUrl: './dashboard.component.html',
   styleUrls: ['dashboard.component.scss'],
   standalone: true,
   imports: [WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, WidgetsBrandComponent, CardHeaderComponent, TableDirective, AvatarComponent]
@@ -187,4 +188,22 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
+  
+  options = {
+    maintainAspectRatio: false
+  };
+
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+  chartBarData: ChartData = {
+    labels: [...this.months].slice(0, 7),
+    datasets: [
+      {
+        label: 'GitHub Commits',
+        backgroundColor: '#f87979',
+        data: [40, 20, 12, 39, 17, 42, 79]
+      }
+    ]
+  };
 }
