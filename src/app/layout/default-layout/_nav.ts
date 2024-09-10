@@ -22,7 +22,7 @@ export const navItems: INavData[] = [
   {
     name: 'Contrôle à Distance',
     iconComponent: { name: 'cil-find-in-page' },
-    url: '/notifications'
+    url: 'map'
   },
   {
     name: 'Gestionnaire',

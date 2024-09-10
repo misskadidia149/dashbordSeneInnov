@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
+import{ LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,16 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
+      {
+        path: 'map',
+        loadChildren: () =>
+          import('./leaflet-map/leaflet-map-routing.module').then((m) => m.LeafletMapRoutingModule)
+      },
+      // {
+      //   path: 'map',
+      //   loadComponent: () => import('./leaflet-map/leaflet-map.module').then(m => m.LeafletMapModule),
+      //   // component: LeafletMapComponent
+      // },
       {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
@@ -77,6 +88,7 @@ export const routes: Routes = [
       title: 'Login Page'
     }
   },
+
   {
     path: 'register',
     loadComponent: () => import('./views/pages/register/register.component').then(m => m.RegisterComponent),
