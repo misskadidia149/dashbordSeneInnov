@@ -22,21 +22,7 @@ export const navItems: INavData[] = [
   {
     name: 'Contrôle à Distance',
     iconComponent: { name: 'cil-find-in-page' },
-    url: '/charts'
-  },
-  {
-    name: 'Analyse des Données',
-    title: true
-  },
-  {
-    name: 'Rapport des sols',
-    iconComponent: { name: 'cil-chart-pie' },
-    url: '/charts'
-  },
-  {
-    name: 'Historique des analyses',
-    iconComponent: { name: 'cil-description' },
-    url: '/charts'
+    url: '/notifications'
   },
   {
     name: 'Gestionnaire',
@@ -59,13 +45,9 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-education' },
   },
   {
-    name: 'Notifications',
-    url: '/notifications',
-    iconComponent: { name: 'cil-bell' },
-    badge: {
-      color: 'danger',
-      text: '+99'
-    },
+    name: 'Categories',
+    url: '/base/pagination',
+    iconComponent: { name: 'cil-education' },
   },
   {
     title: true,

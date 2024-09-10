@@ -7,11 +7,11 @@ export const routes: Routes = [
       title: 'Notifications'
     },
     children: [
-      {
-        path: '',
-        redirectTo: 'badges',
-        pathMatch: 'full'
-      },
+      // {
+      //   path: '',
+      //   redirectTo: 'badges',
+      //   pathMatch: 'full'
+      // },
       {
         path: 'alerts',
         loadComponent: () => import('./alerts/alerts.component').then(m => m.AlertsComponent),
@@ -19,20 +19,20 @@ export const routes: Routes = [
           title: 'Alerts'
         }
       },
-      {
-        path: 'badges',
-        loadComponent: () => import('./badges/badges.component').then(m => m.BadgesComponent),
-        data: {
-          title: 'Badges'
-        }
-      },
-      {
-        path: 'modal',
-        loadComponent: () => import('./modals/modals.component').then(m => m.ModalsComponent),
-        data: {
-          title: 'Modal'
-        }
-      },
+      // {
+      //   path: 'badges',
+      //   loadComponent: () => import('./badges/badges.component').then(m => m.BadgesComponent),
+      //   data: {
+      //     title: 'Badges'
+      //   }
+      // },
+      // {
+      //   path: 'modal',
+      //   loadComponent: () => import('./modals/modals.component').then(m => m.ModalsComponent),
+      //   data: {
+      //     title: 'Modal'
+      //   }
+      // },
       {
         path: 'toasts',
         loadComponent: () => import('./toasters/toasters.component').then(m => m.ToastersComponent),

@@ -1,4 +1,5 @@
 import { Component, computed, DestroyRef, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AvatarComponent,
   BadgeComponent,
@@ -40,6 +41,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
   readonly #colorModeService = inject(ColorModeService);
   readonly colorMode = this.#colorModeService.colorMode;
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
+  private readonly router: Router = inject(Router); // Ajouter Router ici
 
   readonly colorModes = [
     { name: 'light', text: 'Light', icon: 'cilSun' },
@@ -69,6 +71,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
       )
       .subscribe();
   }
+
+  
 
   @Input() sidebarId: string = 'sidebar1';
 
@@ -146,5 +150,9 @@ export class DefaultHeaderComponent extends HeaderComponent {
     { id: 3, title: 'Add new layouts', value: 75, color: 'info' },
     { id: 4, title: 'Angular Version', value: 100, color: 'success' }
   ];
+   // Ajouter une méthode pour naviguer vers la page de notifications
+  navigateToNotifications() {
+    this.router.navigate(['/notifications']);
+  }
 
 }

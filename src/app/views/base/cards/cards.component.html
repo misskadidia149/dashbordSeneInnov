@@ -1,42 +1,140 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <c-row ngPreserveWhitespaces>
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header>
-        <strong>Robots</strong>
+        <strong>Liste d'etats des robots</strong>
       </c-card-header>
       <c-card-body>
-        <p class="text-body-secondary small">
-          Using the most basic table CoreUI, here&#39;s how <code>cTable</code>-based
-          tables look in CoreUI.
-        </p>
-        <app-docs-example href="components/table">
-          <table cTable>
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">UserName</th>
-              <th scope="col">Email</th>
-              <th scope="col">Password</th>
-              <th scope="col">Actions</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>markgmail.com</td>
-              <td>***********</td>
-              <td>
-                <button type="button" class="btn btn-primary"></button>
-                <button type="button" class="btn btn-warning">Primary</button>
-                <button type="button" class="btn btn-danger">Primary</button>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="main-box clearfix">
+                <div class="table-responsive">
+                  <table class="table user-list">
+                    <thead>
+                      <tr>
+                        <th><span>Identifiant</span></th>
+                        <th><span>Etat</span></th>
+                        <th><span>Position</span></th>
+                        <th><span>Agriculteur</span></th>
+                        <th><span>Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          #1
+                        </td>
+                        <td class="text-center">
+                          <span class="label label-default">Actif</span>
+                        </td>
+                        <td>
+                          <span class="label label-default"> Bamako,Missabougou</span>
+                        </td>
+                        <td>
+                          <span class="label label-default"> USER1</span>
+                        </td>
+                        <td style="width: 20%;">
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          #2
+                        </td>
+                        <td class="text-center">
+                          <span class="label label-default">Inactif</span>
+                        </td>
+                        <td>
+                          <span class="label label-default">_</span>
+                          
+                        </td>
+                        <td>
+                          <span class="label label-default"> _</span>
+                        </td>
+                        <td style="width: 20%;">
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          #3
+                        </td>
+                        <td class="text-center">
+                          <span class="label label-default">Actif</span>
+                        </td>
+                        <td>
+                          <span class="label label-default"> Bamako,Missabougou</span>
+                          
+                        </td>
+                        <td>
+                          <span class="label label-default"> USER1</span>
+                        </td>
+                        <td style="width: 20%;">
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
                 
-            </td>
-            </tr>
-            </tbody>
-          </table>
-        </app-docs-example>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
       </c-card-body>
     </c-card>
   </c-col>
