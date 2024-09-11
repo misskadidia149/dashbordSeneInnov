@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
-import { DocsExampleComponent } from '@docs-components/public-api';
+// import { DocsExampleComponent } from '@docs-components/public-api';
 import {
   AlignDirective,
   BorderDirective,
@@ -13,7 +13,7 @@ import {
   CardHeaderComponent,
   CardImgDirective,
   CardLinkDirective,
-  CardSubtitleDirective,
+  CardSubtitleDirective,  // Correction ici
   CardTextDirective,
   CardTitleDirective,
   ColComponent,
@@ -39,14 +39,25 @@ type CardColor = {
 }
 
 @Component({
-  selector: 'app-cards',
-  templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.scss'],
+  selector: 'app-EtatRobot',  // Nom de sélecteur en camelCase
+  templateUrl: './EtatRobot.component.html',  // Correspond au fichier renommé
+  styleUrls: ['./EtatRobot.component.scss'],
   standalone: true,
-  imports: [RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, DocsExampleComponent, TableDirective, TableColorDirective, TableActiveDirective, BorderDirective, AlignDirective]
+  imports: [
+    RowComponent, 
+    ColComponent, 
+    TextColorDirective, 
+    CardComponent, 
+    CardHeaderComponent, 
+    CardBodyComponent, 
+    // DocsExampleComponent, 
+    TableDirective, 
+    TableColorDirective, 
+    TableActiveDirective, 
+    BorderDirective, 
+    AlignDirective
+  ]
 })
-export class CardsComponent {
-
- 
+export class EtatRobotComponent {
   constructor() { }
 }

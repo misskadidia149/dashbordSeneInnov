@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CardModule, GridModule, PaginationModule } from '@coreui/angular';
+import { CardModule, GridModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../../../icons/icon-subset';
-import { PaginationsComponent } from './paginations.component';
+import { categoriesComponent } from './categorie.component';
 
-describe('PaginationsComponent', () => {
-  let component: PaginationsComponent;
-  let fixture: ComponentFixture<PaginationsComponent>;
+describe('categoriesComponent', () => {
+  let component: categoriesComponent;
+  let fixture: ComponentFixture<categoriesComponent>;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [PaginationModule, CardModule, GridModule, RouterTestingModule, PaginationsComponent],
+    imports: [categoriesComponent, CardModule, GridModule, RouterTestingModule, categoriesComponent],
     providers: [IconSetService]
 })
       .compileComponents();
@@ -23,7 +23,7 @@ describe('PaginationsComponent', () => {
     iconSetService = TestBed.inject(IconSetService);
     iconSetService.icons = { ...iconSubset };
 
-    fixture = TestBed.createComponent(PaginationsComponent);
+    fixture = TestBed.createComponent(categoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

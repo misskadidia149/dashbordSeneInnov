@@ -5,16 +5,16 @@ import { provideRouter } from '@angular/router';
 import { ButtonModule, CardModule, GridModule, ListGroupModule, NavModule, UtilitiesModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../../../icons/icon-subset';
-import { CardsComponent } from './cards.component';
+import { EtatRobotComponent } from './EtatRobot.component';
 
-describe('CardsComponent', () => {
-  let component: CardsComponent;
-  let fixture: ComponentFixture<CardsComponent>;
+describe('EtatRobotComponent', () => {
+  let component: EtatRobotComponent;
+  let fixture: ComponentFixture<EtatRobotComponent>;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardModule, NavModule, GridModule, ListGroupModule, UtilitiesModule, ButtonModule, CardsComponent, NoopAnimationsModule, ],
+      imports: [CardModule, NavModule, GridModule, ListGroupModule, UtilitiesModule, ButtonModule, EtatRobotComponent, NoopAnimationsModule, ],
       providers: [IconSetService, provideRouter([])],
       teardown: { destroyAfterEach: false }   // <- add this line for Error: NG0205: Injector has already been destroyed.
     })
@@ -25,7 +25,7 @@ describe('CardsComponent', () => {
     iconSetService = TestBed.inject(IconSetService);
     iconSetService.icons = { ...iconSubset };
 
-    fixture = TestBed.createComponent(CardsComponent);
+    fixture = TestBed.createComponent(EtatRobotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

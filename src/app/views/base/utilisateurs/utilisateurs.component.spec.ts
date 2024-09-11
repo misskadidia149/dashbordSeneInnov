@@ -2,20 +2,22 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CardModule, CarouselModule, GridModule } from '@coreui/angular';
+import { CardModule, GridModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../../../icons/icon-subset';
-import { CarouselsComponent } from './carousels.component';
+import { UtilisateursComponent } from './utilisateurs.component';
 
-describe('CarouselsComponent', () => {
-  let component: CarouselsComponent;
-  let fixture: ComponentFixture<CarouselsComponent>;
+describe('utilisateursComponent', () => {
+  let component: UtilisateursComponent;
+  let fixture: ComponentFixture<UtilisateursComponent>;
   let iconSetService: IconSetService
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [CarouselModule, NoopAnimationsModule, CardModule, GridModule, IconModule, RouterTestingModule, CarouselsComponent],
+    imports: [
+      // utilisateursModule,
+       NoopAnimationsModule, CardModule, GridModule, IconModule, RouterTestingModule, UtilisateursComponent],
     providers: [IconSetService]
 })
     .compileComponents();
@@ -25,7 +27,7 @@ describe('CarouselsComponent', () => {
     iconSetService = TestBed.inject(IconSetService);
     iconSetService.icons = { ...iconSubset };
 
-    fixture = TestBed.createComponent(CarouselsComponent);
+    fixture = TestBed.createComponent(UtilisateursComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

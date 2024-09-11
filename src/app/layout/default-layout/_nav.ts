@@ -17,7 +17,7 @@ export const navItems: INavData[] = [
   {
     name: 'Etat des robots',
     iconComponent: { name: 'cil-locomotive' },
-    url: '/base/cards'
+    url: '/base/EtatRobot'
   },
   {
     name: 'Contrôle à Distance',
@@ -32,7 +32,7 @@ export const navItems: INavData[] = [
   {
     name: 'Utilisateurs',
     iconComponent: { name: 'cil-user' },
-    url: '/base/carousel',
+    url: '/base/utilisateurs',
     badge: {
       color: 'info',
       text: 'NEW'
@@ -46,7 +46,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Categories',
-    url: '/base/pagination',
+    url: '/base/categorie',
     iconComponent: { name: 'cil-education' },
   },
   {

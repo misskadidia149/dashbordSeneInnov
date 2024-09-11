@@ -9,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'cards',
+        redirectTo: 'EtatRobot',
         pathMatch: 'full'
       },
       {
@@ -27,17 +27,17 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'cards',
-        loadComponent: () => import('./cards/cards.component').then(m => m.CardsComponent),
+        path: 'EtatRobot',
+        loadComponent: () => import('./EtatRobot/EtatRobot.component').then(m => m.EtatRobotComponent),
         data: {
-          title: 'Cards'
+          title: 'EtatRobot'
         }
       },
       {
-        path: 'carousel',
-        loadComponent: () => import('./carousels/carousels.component').then(m => m.CarouselsComponent),
+        path: 'utilisateurs',
+        loadComponent: () => import('./utilisateurs/utilisateurs.component').then(m => m.UtilisateursComponent),
         data: {
-          title: 'Carousel'
+          title: 'utilisateurs'
         }
       },
       {
@@ -62,10 +62,10 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'pagination',
-        loadComponent: () => import('./paginations/paginations.component').then(m => m.PaginationsComponent),
+        path: 'categorie',
+        loadComponent: () => import('./categorie/categorie.component').then(m => m.categoriesComponent),
         data: {
-          title: 'Pagination'
+          title: 'categorie'
         }
       },
       {
