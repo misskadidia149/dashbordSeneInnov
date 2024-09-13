@@ -4,20 +4,26 @@ import { DefaultLayoutComponent } from './layout';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', // Redirection vers la page de login par défaut
+    redirectTo: 'dashboard', // Redirection vers la page de login par défaut
     pathMatch: 'full'
   },
   {
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Dashboard'
     },
     children: [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
+      {
+        path: 'utilsateurs',
+        loadChildren: () =>
+          import('./views/utilisateur/app-routing.module').then((m) => m.AppRoutingModule)
+      },
+
       {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)

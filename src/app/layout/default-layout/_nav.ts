@@ -46,7 +46,7 @@ export const navItems: INavData[] = [
   {
     name: 'Utilisateurs',
     iconComponent: { name: 'cil-user' },
-    url: '/base/carousel',
+    url: '/utilsateurs',
     badge: {
       color: 'info',
       text: 'NEW'

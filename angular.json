@@ -35,14 +35,19 @@
             "preserveSymlinks": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/"
+              }
             ],
             "styles": [
-              "src/scss/styles.scss",
-              "src/styles.css",
-              "./node_modules/leaflet/dist/leaflet.css"
+              "src/scss/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/script.js"
+            ],
             "allowedCommonJsDependencies": []
           },
           "configurations": {
