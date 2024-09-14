@@ -72,7 +72,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
       .subscribe();
   }
 
-  
+
 
   @Input() sidebarId: string = 'sidebar1';
 
@@ -152,7 +152,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   ];
    // Ajouter une méthode pour naviguer vers la page de notifications
   navigateToNotifications() {
-    this.router.navigate(['/notifications']);
+    console.log('Notification icon clicked');
+    this.router.navigate(['/notifications/alerts']);
   }
 
 }

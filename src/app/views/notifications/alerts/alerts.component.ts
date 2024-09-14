@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router'; // Importer Router pour la navigation
-import { Router } from '@angular/router'; // Importer Router pour la navigation
+import { Router } from '@angular/router';
 import {
   AlertComponent,
   AlertHeadingDirective,
@@ -14,7 +13,8 @@ import {
   RowComponent,
   TemplateIdDirective,
   TextColorDirective,
-  ThemeDirective
+  ThemeDirective,
+  ModalModule
 } from '@coreui/angular';
 import { IconDirective } from '@coreui/icons-angular';
 import { DocsExampleComponent } from '@docs-components/public-api';
@@ -24,33 +24,62 @@ import { DocsExampleComponent } from '@docs-components/public-api';
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.scss'],
   standalone: true,
-  imports: [RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, DocsExampleComponent, AlertComponent, AlertLinkDirective , AlertHeadingDirective, IconDirective, TemplateIdDirective, ThemeDirective, ButtonCloseDirective, ButtonDirective]
+  imports: [
+    RowComponent,
+    ColComponent,
+    TextColorDirective,
+    CardComponent,
+    CardHeaderComponent,
+    CardBodyComponent,
+    DocsExampleComponent,
+    AlertComponent,
+    AlertLinkDirective,
+    AlertHeadingDirective,
+    IconDirective,
+    TemplateIdDirective,
+    ThemeDirective,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ModalModule  // c'est ici que j'ai importer le modal
+  ]
 })
 export class AlertsComponent implements OnInit {
+  isModalVisible = false;
+  modalTitle = '';
+  modalContent = '';
 
-  visible = [true, true];
-  dismissible = true;
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) {} // Injecter Router dans le constructeur
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  // c'est cette partie qui permet d' Ouvrir le modal avec les détails de la notification
+  // si tu connecte avec une base tu dois laisser les case mais dans ta base de donnee il doit avoir
+  // une colonne pour les type de notification enumere comme : message, alert, success
+  // et au niveau de modalTitle c'est le titre, modalContent c'est le message assure toi qu'il se trouve dans ta base
+  openNotificationModal(type: string): void {
+    switch (type) {
+      case 'message':
+        this.modalTitle = 'Détail du Message';
+        this.modalContent = 'Vous avez reçu un nouveau message de votre administrateur.';
+        break;
+      case 'alert':
+        this.modalTitle = 'Détail de l\'Alerte';
+        this.modalContent = 'Une alerte système a été déclenchée à propos de votre serveur.';
+        break;
+      case 'success':
+        this.modalTitle = 'Opération Réussie';
+        this.modalContent = 'L\'opération a été complétée avec succès.';
+        break;
+      default:
+        this.modalTitle = 'Notification';
+        this.modalContent = 'Détails non disponibles.';
+        break;
+    }
+    this.isModalVisible = true;
   }
 
-  onAlertVisibleChange(eventValue: any = this.visible) {
-    this.visible[1] = eventValue;
+  // c'est ici qui gere la fermeture de modal
+  closeModal(): void {
+    this.isModalVisible = false;
   }
-
-  onResetDismiss() {
-    this.visible = [true, true];
-  }
-
-  onToggleDismiss() {
-    this.dismissible = !this.dismissible;
-  }
-
-  // Méthode pour gérer la redirection lors du clic sur une alerte
-  goToNotificationDetail(type: string) {
-    this.router.navigate(['/notification-detail', { type }]);
-  }
- 
 }

@@ -38,6 +38,7 @@
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-angular": "~5.2.5",
     "@coreui/utils": "^2.0.2",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "@types/leaflet": "^1.9.12",
     "chart.js": "^4.4.4",
     "leaflet": "^1.9.4",

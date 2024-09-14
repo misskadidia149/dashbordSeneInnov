@@ -7,11 +7,11 @@ export const routes: Routes = [
       title: 'Notifications'
     },
     children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'badges',
-      //   pathMatch: 'full'
-      // },
+      {
+        path: '',
+        redirectTo: 'badges',
+        pathMatch: 'full'
+      },
       {
         path: 'alerts',
         loadComponent: () => import('./alerts/alerts.component').then(m => m.AlertsComponent),
