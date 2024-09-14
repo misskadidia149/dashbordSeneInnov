@@ -17,26 +17,12 @@ export const navItems: INavData[] = [
   {
     name: 'Etat des robots',
     iconComponent: { name: 'cil-locomotive' },
-    url: '/base/cards'
+    url: '/base/EtatRobot'
   },
   {
     name: 'Contrôle à Distance',
     iconComponent: { name: 'cil-find-in-page' },
-    url: '/charts'
-  },
-  {
-    name: 'Analyse des Données',
-    title: true
-  },
-  {
-    name: 'Rapport des sols',
-    iconComponent: { name: 'cil-chart-pie' },
-    url: '/charts'
-  },
-  {
-    name: 'Historique des analyses',
-    iconComponent: { name: 'cil-description' },
-    url: '/charts'
+    url: 'map'
   },
   {
     name: 'Gestionnaire',
@@ -46,7 +32,7 @@ export const navItems: INavData[] = [
   {
     name: 'Utilisateurs',
     iconComponent: { name: 'cil-user' },
-    url: '/utilsateurs',
+    url: '/base/utilisateurs',
     badge: {
       color: 'info',
       text: 'NEW'
@@ -59,13 +45,9 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-education' },
   },
   {
-    name: 'Notifications',
-    url: '/notifications',
-    iconComponent: { name: 'cil-bell' },
-    badge: {
-      color: 'danger',
-      text: '+99'
-    },
+    name: 'Categories',
+    url: '/base/categorie',
+    iconComponent: { name: 'cil-education' },
   },
   {
     title: true,

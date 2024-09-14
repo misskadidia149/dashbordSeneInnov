@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+// import { Router } from '@angular/router'; // Importer Router pour la navigation
+import { Router } from '@angular/router'; // Importer Router pour la navigation
 import {
   AlertComponent,
   AlertHeadingDirective,
@@ -23,14 +24,14 @@ import { DocsExampleComponent } from '@docs-components/public-api';
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.scss'],
   standalone: true,
-  imports: [RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, DocsExampleComponent, AlertComponent, AlertLinkDirective, RouterLink, AlertHeadingDirective, IconDirective, TemplateIdDirective, ThemeDirective, ButtonCloseDirective, ButtonDirective]
+  imports: [RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, DocsExampleComponent, AlertComponent, AlertLinkDirective , AlertHeadingDirective, IconDirective, TemplateIdDirective, ThemeDirective, ButtonCloseDirective, ButtonDirective]
 })
 export class AlertsComponent implements OnInit {
 
   visible = [true, true];
   dismissible = true;
 
-  constructor() { }
+  constructor(private router: Router) {} // Injecter Router dans le constructeur
 
   ngOnInit(): void {
   }
@@ -47,4 +48,9 @@ export class AlertsComponent implements OnInit {
     this.dismissible = !this.dismissible;
   }
 
+  // Méthode pour gérer la redirection lors du clic sur une alerte
+  goToNotificationDetail(type: string) {
+    this.router.navigate(['/notification-detail', { type }]);
+  }
+ 
 }

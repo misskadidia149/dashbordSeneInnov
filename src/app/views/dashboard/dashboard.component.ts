@@ -23,6 +23,13 @@ import {
 import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { IconDirective } from '@coreui/icons-angular';
 
+import { HttpClient } from '@angular/common/http';
+import { Categorie } from 'src/app/models/categorie';
+import { Formation } from 'src/app/models/formation';
+import { Utilisateur } from 'src/app/models/utilisateurs';
+import { CategorieService } from 'src/app/services/categorie.service';
+import { FormationService } from 'src/app/services/formation.services';
+import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 import { WidgetsBrandComponent } from '../widgets/widgets-brand/widgets-brand.component';
 import { WidgetsDropdownComponent } from '../widgets/widgets-dropdown/widgets-dropdown.component';
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
@@ -150,6 +157,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.initCharts();
     this.updateChartOnColorModeChange();
+    this.getCategories();
+    this.getFormation();
   }
 
   initCharts(): void {
@@ -185,6 +194,7 @@ export class DashboardComponent implements OnInit {
         const scales = this.#chartsData.getScales();
         this.mainChartRef().options.scales = { ...options.scales, ...scales };
         this.mainChartRef().update();
+        this.getUtilisateurs();
       });
     }
   }
@@ -206,4 +216,53 @@ export class DashboardComponent implements OnInit {
       }
     ]
   };
+
+  constructor(private http: HttpClient,
+    private categorieService: CategorieService,
+    private formationService: FormationService,
+    private utilisateurService: UtilisateurService) { }
+
+    categories:any
+    NbreCategorie:any;
+  getCategories(): void {
+    this.categorieService.getCategories().subscribe(
+      (data: Categorie[]) => {
+        this.categories = data;
+        this.NbreCategorie = this.categories.length
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des catégories', error);
+      }
+    );
+  }
+
+  formation:any;
+  NbreFomation:any;
+  getFormation(): void {
+    this.formationService.getAllFormation().subscribe(
+      (data: Formation[]) => {
+        this.formation = data;
+        this.NbreFomation = this.formation.length
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des formations', error);
+      }
+    );
+  }
+
+  utilisateurs: any;
+  NbreUser:any;
+  getUtilisateurs(): void {
+    this.utilisateurService.getAllUser().subscribe(
+      (data: Utilisateur[]) => {
+        this.utilisateurs = data;
+        this.NbreUser = this.utilisateurs.length
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des utilisateurs', error);
+      }
+    );
+  }
+
+
 }

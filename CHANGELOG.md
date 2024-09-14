@@ -5,7 +5,7 @@
 #### `5.2.5`
 
 - chore(dependencies): update to Angular 18.1
-- refactor(cards): card navigation update to the latest `tabs` api
+- refactor(EtatRobot): card navigation update to the latest `tabs` api
 
 ---
 
@@ -125,7 +125,7 @@ see: [Babel vulnerable to arbitrary code execution when compiling specifically c
 #### `4.5.16`
 
 - chore(dependencies): update to `Angular 16.2`
-- fix(carousels): remove routerLink directives from carousel controls
+- fix(utilisateurs): remove routerLink directives from utilisateur controls
 - chore: add CoreUI links to the sidebar-nav, minor refactors
 - refactor(styles): scrollbar tweaks
 - refactor(styles): scss variables - disable deprecation messages

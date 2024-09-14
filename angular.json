@@ -43,11 +43,10 @@
               }
             ],
             "styles": [
-              "src/scss/styles.scss"
-            ],
-            "scripts": [
-              "src/assets/js/script.js"
-            ],
+          "src/scss/styles.scss",
+          "./node_modules/leaflet/dist/leaflet.css"
+],
+            "scripts": [],
             "allowedCommonJsDependencies": []
           },
           "configurations": {
