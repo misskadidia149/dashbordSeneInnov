@@ -1,0 +1,255 @@
+<!--CARDS DE ETAT ROBOT-->
+<c-row>
+  <c-col xs="12"> </c-col>
+  <c-col xs="12" lg="12">
+    <c-card class="mb-4">
+      <c-card-header> Statistique generale </c-card-header>
+      <c-card-body>
+        <c-row>
+          <c-col lg="6" sm="6" xs="12">
+            <c-widget-stat-f
+              [title]="'Nombre d\'utilisateur'"
+              class="mb-3"
+              color="info"
+              padding
+              value="{{NbreUser}}"
+            >
+              <ng-template cTemplateId="widgetIconTemplate">
+                <svg cIcon name="cil-user-follow" size="xl" width="24"></svg>
+              </ng-template>
+            </c-widget-stat-f>
+          </c-col>
+        </c-row>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+<!--CARDS DE ETAT ROBOT-->
+
+<h2>Liste de formation</h2>
+<!--MODAL ROBOT-->
+<button class="btn btn-outline-primary mb-2 me-2" [cModalToggle]="contentw.id">
+Ajouter
+</button>
+
+<!--MODAL CREATION-->
+<c-modal #contentw backdrop="static" id="contentw">
+<c-modal-header>
+  <h4 cModalTitle>Nouvelle formation</h4>
+  <button [cModalToggle]="contentw.id" cButtonClose></button>
+</c-modal-header>
+<c-modal-body>
+  <form cForm class="row g-3">
+    <c-col [xs]="12">
+      <label cLabel for="nomEtPrenom">Nom & Prenom: *</label>
+      <input
+        cFormControl
+        id="nomEtPrenom"
+        name="nomEtPrenom"
+        placeholder="exemple: mary traore"
+        [(ngModel)]="nomEtPrenom"
+        type="text"
+        required
+      />
+    </c-col>
+
+    <c-col [xs]="12">
+        <label cLabel for="username">Nom d'utilisateur *</label>
+        <input
+          cFormControl
+          id="username"
+          name="username"
+          placeholder="user"
+          [(ngModel)]="username"
+          required
+        />
+      </c-col>
+
+      <c-col [xs]="12">
+        <label cLabel for="telephone">Téléphone *</label>
+        <input
+          cFormControl
+          id="telephone"
+          name="telephone"
+          placeholder="+ 223 64897332"
+          [(ngModel)]="telephone"
+          required
+        />
+      </c-col>
+
+      <c-col [xs]="12">
+        <label cLabel for="telepasswordphone">Mot de passe *</label>
+        <input
+          cFormControl
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+          [(ngModel)]="password"
+          required
+        />
+      </c-col>
+  </form>
+
+</c-modal-body>
+<c-modal-footer>
+  <button [cModalToggle]="contentw.id" cButton color="secondary" (click)="Create()">Créer</button>
+</c-modal-footer>
+</c-modal>
+<!--MODAL CREATION-->
+
+ <!-- MODAL DÉTAILS -->
+ <c-modal #userModal backdrop="static" id="userModal">
+  <c-modal-header>
+    <h4 cModalTitle>Détails de l'utilisateur</h4>
+    <button [cModalToggle]="userModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form class="row g-3">
+      
+
+      <div class="col-lg-12">
+        <div class="card mb-8">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom & Prenom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{nomEtPrenom}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom d'utilisateur</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.username}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Telephone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.telephone}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Pocession robot</p>
+              </div>
+              <div class="col-sm-9">
+                <c-badge color="success"> 
+                  <span *ngIf="selectedUser.robot" class="valid">Confirmer</span>
+                </c-badge>
+                <c-badge color="warning"> 
+                  <span *ngIf="!selectedUser.robot" class="non-valid">Non confirmer</span>
+                </c-badge>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="userModal.id" cButton color="secondary">Fermer</button>
+  </c-modal-footer>
+</c-modal>
+ <!-- MODAL DÉTAILS -->
+
+<!-- Table list utilisateur -->
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Utilisateurs</c-card-header>
+      <table
+        [hover]="true"
+        [responsive]="true"
+        [striped]="true"
+        align="middle"
+        cTable
+        class="mb-0 border"
+      >
+        <thead cTableColor="light">
+          <tr>
+            <th>ID</th>
+            <th>Nom & Prenom</th>
+            <th>Nom d'utilisateur</th>
+            <th>Télephone</th>
+            <th>Robot</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users
+            | paginate : { itemsPerPage: 4, currentPage: p };
+          let id = index">
+          <td>
+            {{ id+1 }}
+          </td>
+        
+            <td>
+              <div class="txt">{{ user.nomEtPrenom }}</div>
+            </td>
+            <td class="text-center" style="font-size: 13px;">
+              {{ user.username }}
+            </td>
+            <td class="txt">
+              {{ user.telephone }}
+            </td>
+
+            <td class="text-center">
+              <c-badge color="success"> 
+                <span *ngIf="user.robot" class="valid">Confirmer</span>
+              </c-badge>
+              <c-badge color="warning"> 
+                <span *ngIf="!user.robot" class="non-valid">Non confirmer</span>
+              </c-badge>
+              <!-- {{ rdv.active }} -->
+            </td>
+           
+            <td class="text-center">
+              <div class="btn-group">
+                <a id="btn-1" class="btn btn-outline-primary" 
+                [cModalToggle]="userModal.id"
+                 (click)="openUser(user.id)" 
+                title="Details">
+                  <i class="far fa-eye"></i>
+                </a>
+              <a
+                class="btn btn-success"
+             
+                title="Modifier"
+                ><i class="fa-solid fa-pen-to-square"></i
+              ></a>
+                <a class="btn btn-danger" title="Supprimer" (click)="deletePopUp(user.id)"
+                  ><i class="fa-solid fa-trash"></i
+                ></a>
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </c-card>
+  </c-col>
+</c-row>
+<!-- Table list utilisateur -->
+
+
+
+<div class="listvide" *ngIf="NbreUser==0">
+  <label>Il n'y existe pas encore d'utilisateur</label>
+  </div>
+
+  <!--PAGINATION DE TABLE-->
+<div class="pagination">
+<pagination-controls (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
+</div>
+<!--PAGINATION DE TABLE-->

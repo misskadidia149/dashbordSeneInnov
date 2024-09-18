@@ -1,5 +1,7 @@
-import { Component, computed, DestroyRef, inject, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgStyle, NgTemplateOutlet } from '@angular/common';
+import { Component, computed, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {
   AvatarComponent,
   BadgeComponent,
@@ -23,11 +25,10 @@ import {
   TextColorDirective,
   ThemeDirective
 } from '@coreui/angular';
-import { NgStyle, NgTemplateOutlet } from '@angular/common';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { IconDirective } from '@coreui/icons-angular';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { delay, filter, map, tap } from 'rxjs/operators';
+import { StorageService } from 'src/app/services/storage.services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-default-header',
@@ -35,7 +36,7 @@ import { delay, filter, map, tap } from 'rxjs/operators';
   standalone: true,
   imports: [ContainerComponent, HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, NavItemComponent, NavLinkDirective, RouterLink, RouterLinkActive, NgTemplateOutlet, BreadcrumbRouterComponent, ThemeDirective, DropdownComponent, DropdownToggleDirective, TextColorDirective, AvatarComponent, DropdownMenuDirective, DropdownHeaderDirective, DropdownItemDirective, BadgeComponent, DropdownDividerDirective, ProgressBarDirective, ProgressComponent, NgStyle]
 })
-export class DefaultHeaderComponent extends HeaderComponent {
+export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
 
   readonly #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   readonly #colorModeService = inject(ColorModeService);
@@ -54,7 +55,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
     return this.colorModes.find(mode=> mode.name === currentMode)?.icon ?? 'cilSun';
   });
 
-  constructor() {
+  constructor( 
+    private storage: StorageService) {
     super();
     this.#colorModeService.localStorageItemName.set('coreui-free-angular-admin-template-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
@@ -70,6 +72,9 @@ export class DefaultHeaderComponent extends HeaderComponent {
         takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();
+  }
+  ngOnInit(): void {
+
   }
 
   
@@ -154,5 +159,35 @@ export class DefaultHeaderComponent extends HeaderComponent {
   navigateToNotifications() {
     this.router.navigate(['/notifications']);
   }
+
+  logout(): void {
+    this.storage.signOut();
+  }
+
+  Poplogout(): void {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+      confirmButton: 'btn btn-primary',
+      cancelButton: 'btn btn-danger',
+      },
+      heightAuto: false
+    })
+    swalWithBootstrapButtons.fire({
+      text: "Etês-vous sûr de vouloir vous deconnecter ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confimer',
+      cancelButtonText: 'Annuler',
+      // reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.logout();
+      this.router.navigateByUrl('/connexion', {skipLocationChange: true}).then(() => {
+        this.router.navigate(["/connexion"])
+      })
+      }
+    })
+}
+
 
 }

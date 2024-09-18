@@ -1,0 +1,336 @@
+<!--CARDS DE ETAT ROBOT-->
+<c-row>
+    <c-col xs="12"> </c-col>
+    <c-col xs="12" lg="12">
+      <c-card class="mb-4">
+        <c-card-header> Statistique generale </c-card-header>
+        <c-card-body>
+          <c-row>
+            <c-col lg="6" sm="6" xs="12">
+              <c-widget-stat-f
+                [title]="'Nombre de formation'"
+                class="mb-3"
+                color="info"
+                padding
+                value="{{NbreFomation}}"
+              >
+                <ng-template cTemplateId="widgetIconTemplate">
+                  <svg cIcon name="cil-align-left" size="xl" width="24"></svg>
+                </ng-template>
+              </c-widget-stat-f>
+            </c-col>
+          </c-row>
+        </c-card-body>
+      </c-card>
+    </c-col>
+</c-row>
+  <!--CARDS DE ETAT ROBOT-->
+
+  <h2>Liste de formation</h2>
+<!--MODAL ROBOT-->
+<button class="btn btn-outline-primary mb-2 me-2" [cModalToggle]="contentw.id">
+  Ajouter
+</button>
+
+<!--MODAL CREATION-->
+<c-modal #contentw backdrop="static" id="contentw" size="lg">
+  <c-modal-header>
+    <h4 cModalTitle>Nouvelle formation</h4>
+    <button [cModalToggle]="contentw.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm class="row g-3">
+      <c-col [xs]="6">
+        <label cLabel for="title">Titre *</label>
+        <input
+          cFormControl
+          id="title"
+          name="title"
+          placeholder="Titre"
+          [(ngModel)]="title"
+          type="text"
+          required
+        />
+      </c-col>
+
+      <c-col [xs]="6">
+          <label cLabel for="subtitle">Sous titre *</label>
+          <input
+            cFormControl
+            id="subtitle"
+            name="subtitle"
+            placeholder="Sous Titre"
+            [(ngModel)]="subtitle"
+            required
+          />
+        </c-col>
+
+        <c-col [xs]="6">
+          <label cLabel for="idCat">Catégoie *</label>
+          <select aria-label="Default select example" cSelect id="idCat" name="idCat" [(ngModel)]="idCat">
+            <option selected>--choisir une categorie--</option>
+            <option *ngFor="let sp of categories" value="{{sp.id}}">{{sp.titre}}</option>
+          </select>
+        </c-col>
+
+        <c-col [xs]="6">
+          <label cLabel for="instructeur">Instructeur *</label>
+          <input
+            cFormControl
+            id="instructeur"
+            name="instructeur"
+            placeholder="Instructeur"
+            [(ngModel)]="instructeur"
+            required
+          />
+        </c-col>
+
+      <div cFormFloating>
+        <textarea
+          cFormControl
+          id="description"
+          name="description"
+          [(ngModel)]="description"
+          required
+          style="width: 100%; height: 130px;"
+        >
+        </textarea>
+        <label cLabel for="floatingTextarea2">Description *</label>
+      </div>
+      <div class="mb-3">
+        <input
+          aria-label="file example"
+          cFormControl
+          id="image"
+          name="image"
+          type="file"
+          (change)="recuperationImg($event)"
+          required
+        />
+      </div>
+
+    </form>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="contentw.id" cButton color="secondary" (click)="onCreate()">Créer</button>
+  </c-modal-footer>
+</c-modal>
+<!--MODAL CREATION-->
+
+
+ <!-- MODAL DÉTAILS FORMATION -->
+ <c-modal #formationModal backdrop="static" id="formationModal" size="lg">
+  <c-modal-header>
+    <h4 cModalTitle>Détails de la formation</h4>
+    <button [cModalToggle]="formationModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form class="row g-3">
+      <c-col [xs]="6">
+        <label cLabel for="title">Title : </label>
+        <input
+          cFormControl
+          id="title"
+          name="title"
+          placeholder="title"
+          [(ngModel)]="selectedFormartion.title"
+          disabled
+        />
+      </c-col>
+
+      <c-col [xs]="6">
+        <label cLabel for="subtitle">Sous-titre : </label>
+        <input
+          cFormControl
+          id="subtitle"
+          name="subtitle"
+          placeholder="subtitle"
+          [(ngModel)]="selectedFormartion.subtitle"
+          disabled
+        />
+      </c-col>
+
+      <c-col [xs]="6">
+        <label cLabel for="instructeur">Instructeur : </label>
+        <input
+          cFormControl
+          id="instructeur"
+          name="instructeur"
+          [(ngModel)]="selectedFormartion.instructeur"
+          disabled
+        />
+      </c-col>
+
+      <c-col [xs]="6">
+        <label cLabel for="categorie">Catégorie : </label>
+        <input
+          cFormControl
+          id="categorie"
+          name="categorie"
+          placeholder="categorie"
+          [(ngModel)]="category"
+          disabled
+        />
+      </c-col>
+      <c-col [xs]="6">
+        <label cLabel for="date">Date de creation: </label>
+        <input
+          cFormControl
+          id="date"
+          name="date"
+          placeholder="date"
+          [value]="selectedFormartion?.date | date:'yy/dd/yyyy HH:mm:ss'"
+          disabled
+        />
+      </c-col>
+
+      <div cFormFloating>
+        <textarea
+          [ngStyle]="{ 'height.px': 130 }"
+          cFormControl
+          [(ngModel)]="selectedFormartion.description"
+          disabled
+          name="description"
+          style="size: 14px;"
+        ></textarea>
+        <label cLabel for="floatingTextarea2">Description : </label>
+      </div>
+
+      <div class="mb-9">
+        <img
+          *ngIf="selectedFormartion.image"
+          [src]="env.baseUrl + selectedFormartion.image"
+          alt="image" name="image"
+          style="width: 100%; max-width: 100%; height: 300px; border-radius: 10px; object-fit: cover;"
+        />
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="formationModal.id" cButton color="secondary">Fermer</button>
+  </c-modal-footer>
+</c-modal>
+ <!-- MODAL DÉTAILS FORMATION -->
+
+
+<!--SEARCH-->
+<c-input-group class="input-prepend"  style="margin-bottom: 10px;width: 45%;">
+    <span cInputGroupText>
+      <svg cIcon name="cilMagnifyingGlass"></svg>
+    </span>
+    <input
+      name="search"
+      [(ngModel)]="searchText"
+      cFormControl
+      placeholder="Rechercher"
+      type="text"
+    />
+    <button cButton color="info">Search</button>
+  </c-input-group>
+  <!--SEARCH-->
+
+
+
+<!-- Table list formation -->
+  <c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header>Formation</c-card-header>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Titre</th>
+              <th>Sous-titre</th>
+              <th>Instructeur</th>
+              <th>Description</th>
+              <th>Catégorie</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of formation
+              | paginate : { itemsPerPage: 4, currentPage: p };
+            let id = index">
+            <td>
+              {{ id+1 }}
+            </td>
+          <td>
+            <div>
+          <img *ngIf="f.image" [src]="env.baseUrl + f.image" alt="image" style="width: 100px; height: 90px;">
+        </div>
+				<div>
+          <img *ngIf="!f.image" src="src/assets/images/legumes.jpeg" alt="default image" style="width: 100px; height: 90px;">
+				</div>
+
+          </td>
+              <td>
+                <div class="txt">{{ f.title }}</div>
+              </td>
+              <td class="text-center" style="font-size: 13px;">
+                {{ f.subtitle }}
+              </td>
+              <td class="txt">
+                {{ f.instructeur }}
+              </td>
+              <td class="txt">
+                {{ f.description }}
+              </td>
+              <td class="txt">
+                {{ f.categories.titre }}
+              </td>
+              <td class="txt">
+                {{ f.date | date:'dd/MM/yyyy - HH:mm:ss' }}
+              </td>
+              <td class="text-center">
+                <div class="btn-group">
+                  <a id="btn-1" class="btn btn-outline-primary" 
+                  [cModalToggle]="formationModal.id"
+                   (click)="openFormation(f.id)" 
+                  title="Details">
+                    <i class="far fa-eye"></i>
+                  </a>
+                <a
+                  class="btn btn-success"
+                  routerLink="/dashboard/update-formation/{{f.id}}"
+                  title="Modifier"
+                  ><i class="fa-solid fa-pen-to-square"></i
+                ></a>
+                  <a class="btn btn-danger" title="Supprimer"  (click)="deletePopUp(f.id)"
+                    ><i class="fa-solid fa-trash"></i
+                  ></a>
+                  <!-- <button [cModalToggle]="formationModal.id" cButton class="btn btn-outline-primary" title="Details" (click)="openFormation(f.id)">
+                    <i class="far fa-eye"></i>
+                  </button> -->
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </c-card>
+    </c-col>
+  </c-row>
+  <!-- Table list formation -->
+
+
+  <div class="listvide" *ngIf="NbreFomation==0">
+    <label>Il n'y existe pas encore de formation</label>
+    </div>
+  
+    <!--PAGINATION DE TABLE-->
+<div class="pagination">
+  <pagination-controls (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
+</div>
+<!--PAGINATION DE TABLE-->
+

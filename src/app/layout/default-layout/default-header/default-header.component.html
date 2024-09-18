@@ -11,21 +11,122 @@
     >
       <svg cIcon name="cilMenu" size="lg"></svg>
     </button>
-    <c-header-nav class="d-none d-md-flex">
+    <c-header-nav class="d-none d-md-flex  me-auto">
       <c-nav-item>
-        <a cNavLink routerLink="/dashboard" routerLinkActive="active">Tableau de bord</a>
-      </c-nav-item>
-      <c-nav-item>
-        <a cNavLink routerLink="/users" routerLinkActive="active">Utilisateur</a>
-      </c-nav-item>
-      <c-nav-item>
-        <a cNavLink routerLink="/settings" routerLinkActive="active">Réglages</a>
-      </c-nav-item>
+        <a
+        cNavLink
+        routerLink="/dashboard"
+        routerLinkActive="active"
+      >
+        Dashboard
+      </a>      </c-nav-item>
+      
     </c-header-nav>
 
-    <c-header-nav class="d-none d-md-flex ms-auto ">
+    <c-header-nav class="d-none d-lg-flex">
+      <c-nav-item>
+        <div class="nav-item dropdown" style="margin-right: 10px">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+          >
+            <svg
+              cIcon
+              name="cilBell"
+              size="lg"
+              class="position-relative mx-2"
+            ></svg>
+            <c-badge color="danger" position="top-end" shape="rounded-pill"
+              >30</c-badge
+            >
+            <span class="d-none d-lg-inline-flex">Notifications</span>
+          </a>
+          <div 
+            class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0"
+          >
+      
+            <h6 cDropdownHeader class="bg-light fw-semibold py-2">
+              Notifications recentes
+            </h6>
+            <hr class="dropdown-divider" />
+  
+            <!-- <div *ngFor="let notif of listNotif"> -->
+              <div>
+            <!-- <a href="#" class="dropdown-item"
+            routerLink="/detailclinique/{{notif.clinique.id}}" > -->
+            <a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <img
+                  class="rounded-circle"
+                  src="./assets/img/avatars/8.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <img
+                  class="rounded-circle"
+                  src="./assets/img/avatars/8.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <div class="ms-2">
+                  <h6 class="fw-normal mb-0">text</h6>
+                  <!-- <h6 class="fw-normal mb-0">{{notif.titre}}</h6> -->
+  
+                  <!-- <small>{{notif.datenotif |date:"dd-MM-yyyy à HH:m:ss" }}</small> -->
+                  <small>18/04/2024</small>
+  
+                </div>
+              </div>
+            </a>
+            <hr class="dropdown-divider" />
+            <a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <img
+                  class="rounded-circle"
+                  src="./assets/img/avatars/8.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <div class="ms-2">
+                  <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                  <small>15 minutes ago</small>
+                </div>
+              </div>
+            </a>
+            <hr class="dropdown-divider" />
+            <a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <img
+                  class="rounded-circle"
+                  src="./assets/img/avatars/8.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <div class="ms-2">
+                  <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                  <small>15 minutes ago</small>
+                </div>
+              </div>
+            </a>
+            <hr class="dropdown-divider" />
+  
+          </div>
+  
+            <a href="/#/dashboard" class="dropdown-item text-center">Voir plus</a>
+         
+  
+        </div>
+  
+  
+        </div>
+      </c-nav-item>
+</c-header-nav>
+
+
+
+    <!-- <c-header-nav class="d-none d-md-flex ms-auto ">
       <a cNavLink>
-        <!-- Exemple de code HTML -->
 <svg cIcon name="cilBell" (click)="navigateToNotifications()" class="icon-style"></svg>
 
       </a>
@@ -35,15 +136,15 @@
       <a cNavLink>
         <svg cIcon class="my-1" name="cilEnvelopeOpen" size="lg"></svg>
       </a>
-    </c-header-nav>
+    </c-header-nav> -->
 
-    <c-header-nav class="ms-auto ms-md-0">
+    <c-header-nav class="ms-3">
       <div class="nav-item py-1">
-        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+        <div class="vr h-40 mx-2 text-body text-opacity-75"></div>
       </div>
       <ng-container *ngTemplateOutlet="themeDropdown" />
       <div class="nav-item py-1">
-        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+        <div class="vr h-40 mx-2 text-body text-opacity-75"></div>
       </div>
     </c-header-nav>
 
@@ -57,6 +158,8 @@
   </c-container>
 </ng-container>
 <!--</c-header>-->
+
+
 
 <ng-template #userDropdown>
   <c-dropdown [popperOptions]="{ placement: 'bottom-start' }" variant="nav-item">
@@ -76,15 +179,16 @@
           Compte
         </h6>
       </li>
-      <li>
+
+      <!-- <li>
         <a cDropdownItem routerLink="/views/notifications/alerts">
           <svg cIcon class="me-2" name="cilBell"></svg>
           Mise à jour
           <c-badge class="ms-2 float-end" color="info"> 42</c-badge>
         </a>
-      </li>
+      </li> -->
       <li>
-        <a cDropdownItem routerLink="/apps/email/inbox">
+        <a cDropdownItem routerLink="/dashboard/messages" >
           <svg cIcon class="me-2" name="cilEnvelopeOpen"></svg>
           Messages
           <c-badge class="ms-2 float-end" color="success">
@@ -93,12 +197,22 @@
         </a>
       </li>
       <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Paramètre</h6>
+      </li>
+      <li></li>
+      <li>
+        <a routerLink="/dashboard/profile" cDropdownItem>
+          <svg cIcon class="me-2" name="cilUser"></svg>
+          Profile
+        </a>
+      </li>
+      <!-- <li>
         <a cDropdownItem routerLink="">
           <svg cIcon class="me-2" name="cilCommentSquare"></svg>
           Commentaires
           <c-badge class="ms-auto" color="warning"> 42</c-badge>
         </a>
-      </li>
+      </li> -->
       <li>
         <h6 cDropdownHeader class="bg-body-secondary text-body-secondary fw-semibold py-2">
           Réglages
@@ -106,9 +220,9 @@
       </li>
       <li></li>
       <li>
-        <a cDropdownItem routerLink="">
+        <a cDropdownItem (click)="Poplogout()">
           <svg cIcon class="me-2" name="cilAccountLogout"></svg>
-          Deconnexion
+          Déconnexion
         </a>
       </li>
     </ul>

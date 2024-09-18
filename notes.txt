@@ -1,0 +1,5 @@
+Creation en angular:
+ng g c nom_component
+ng g s nom_service
+ng g m nom_module
+ng generate guard <nom-du-guard>

@@ -9,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'EtatRobot',
+        redirectTo: 'cards',
         pathMatch: 'full'
       },
       {
@@ -27,17 +27,17 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'EtatRobot',
-        loadComponent: () => import('./EtatRobot/EtatRobot.component').then(m => m.EtatRobotComponent),
+        path: 'cards',
+        loadComponent: () => import('./cards/cards.component').then(m => m.CardsComponent),
         data: {
-          title: 'EtatRobot'
+          title: 'Cards'
         }
       },
       {
-        path: 'utilisateurs',
-        loadComponent: () => import('./utilisateurs/utilisateurs.component').then(m => m.UtilisateursComponent),
+        path: 'carousel',
+        loadComponent: () => import('./carousels/carousels.component').then(m => m.CarouselsComponent),
         data: {
-          title: 'utilisateurs'
+          title: 'Carousel'
         }
       },
       {
@@ -62,15 +62,11 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'categorie',
-        loadComponent: () => import('./categorie/categorie.component').then(m => m.categoriesComponent),
+        path: 'pagination',
+        loadComponent: () => import('./paginations/paginations.component').then(m => m.PaginationsComponent),
         data: {
-          title: 'categorie'
+          title: 'Pagination'
         }
-      },
-      {
-        path: 'update-categorie/:id',
-        loadComponent: () => import('./categorie/update-categorie/update-categorie.component').then(m => m.UpdateCategorieComponent),
       },
       {
         path: 'placeholder',
@@ -105,13 +101,6 @@ export const routes: Routes = [
         loadComponent: () => import('./tables/tables.component').then(m => m.TablesComponent),
         data: {
           title: 'Tables'
-        }
-      },
-      {
-        path: 'formation',
-        loadComponent: () => import('./formation/formation.component').then(m => m.FormationComponent),
-        data: {
-          title: 'Formation'
         }
       },
       {

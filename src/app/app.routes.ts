@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
+import { DashboardGuard } from './views/components/guard/access.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard', // Redirection vers la page de login par défaut
+    redirectTo: 'connexion', // Redirection vers la page de login par défaut
     pathMatch: 'full'
   },
   {
@@ -16,18 +17,9 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
+        loadChildren: () => import('./views/components/routes').then((m) => m.routes),
+        canActivate: [DashboardGuard]
       },
-      {
-        path: 'map',
-        loadChildren: () =>
-          import('./leaflet-map/leaflet-map-routing.module').then((m) => m.LeafletMapRoutingModule)
-      },
-      // {
-      //   path: 'map',
-      //   loadComponent: () => import('./leaflet-map/leaflet-map.module').then(m => m.LeafletMapModule),
-      //   // component: LeafletMapComponent
-      // },
       {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
@@ -63,7 +55,7 @@ export const routes: Routes = [
       {
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
-      }
+      },
     ]
   },
   {
@@ -85,6 +77,13 @@ export const routes: Routes = [
     loadComponent: () => import('./views/pages/login/login.component').then(m => m.LoginComponent),
     data: {
       title: 'Login Page'
+    }
+  },
+  {
+    path: 'connexion',
+    loadComponent: () => import('./views/pages/connexion/connexion.component').then(m => m.ConnexionComponent),
+    data: {
+      title: 'Connexion Page'
     }
   },
 

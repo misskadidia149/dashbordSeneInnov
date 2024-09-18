@@ -1,8 +1,8 @@
-export interface Utilisateur {
+export interface User {
     id: number;
-    nom: string;
-    email: string;
-    role: string;
-    // Ajoute d'autres propriétés selon ton besoin
+    nomEtPrenom: string;
+    username: string;
+    telephone: string;
+    password: string;
   }
   

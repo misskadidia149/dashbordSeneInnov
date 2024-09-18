@@ -1,28 +1,39 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Utilisateur } from '../models/utilisateurs'; // Import du modèle utilisateur (si tu en as un)
+import { environment } from '../../environments/environment';
+import { User } from '../models/utilisateurs'; // Import du modèle utilisateur (si tu en as un)
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
-  private baseUrl = 'http://localhost:9000/api/utilisateurs'; // URL de l'API backend
-
+  env=environment;
   constructor(private http: HttpClient) { }
 
-  // Méthode pour récupérer la liste des utilisateurs
-  getUtilisateurs(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>(`${this.baseUrl}/all`);
+  getAllUser(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.env.api}` + `/api/user/read`);
   }
 
-  // Méthode pour créer un utilisateur
-  createUtilisateur(utilisateur: Utilisateur): Observable<any> {
-    return this.http.post(`${this.baseUrl}/create`, utilisateur);
+  createUtilisateur(nomEtPrenom: any, username: any, telephone: any, password: any): Observable<any> {
+    // const dat: FormData = new FormData();
+    let user = {
+      "nomEtPrenom": nomEtPrenom,
+      "username": username,
+      "telephone": telephone,
+      "password": password
+    }
+    console.log(user);
+    // dat.append('data', JSON.stringify(user).slice(1, JSON.stringify(user).lastIndexOf(']')));
+      return this.http.post(`${this.env.api}/api/auth/signup`, user);
+  }
+
+  detail(id: number): Observable<User> {
+    return this.http.get<User>(`${this.env.api}` + `/api/user/get/${id}`);
   }
 
   // Méthode pour supprimer un utilisateur
-  deleteUtilisateur(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${id}`);
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.env.api}/api/user/delete/${id}`);
   }
 }

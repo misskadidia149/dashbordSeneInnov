@@ -1,0 +1,87 @@
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update catégorie</h4>
+    </div>
+    <div class="modal-body">
+
+        <form class="row g-3">
+            <c-col [xs]="6">
+              <label cLabel for="title">Title : </label>
+              <input
+                cFormControl
+                id="title"
+                name="title"
+                placeholder="title"
+                [(ngModel)]="title"
+                [value]="title"
+              />
+            </c-col>
+        
+            <c-col [xs]="6">
+              <label cLabel for="subtitle">Sous-titre : </label>
+              <input
+                cFormControl
+                id="subtitle"
+                name="subtitle"
+                placeholder="subtitle"
+                [(ngModel)]="subtitle"
+                [value]="subtitle"
+
+              />
+            </c-col>
+        
+            <c-col [xs]="6">
+              <label cLabel for="instructeur">Instructeur : </label>
+              <input
+                cFormControl
+                id="instructeur"
+                name="instructeur"
+                [(ngModel)]="instructeur"
+                [value]="instructeur"
+              />
+            </c-col>
+
+            <!-- <c-col [xs]="6">
+                <label cLabel for="idCat">Catégoie *</label>
+                <select aria-label="Default select example" cSelect id="idCat" name="idCat" [(ngModel)]="idCat">
+                  <option *ngFor="let sp of categories" value="{{sp.id}}" [value]="sp.titre">{{sp.titre}}</option>
+                </select>
+              </c-col> -->
+                
+            <div cFormFloating>
+              <textarea
+                [ngStyle]="{ 'height.px': 130 }"
+                cFormControl
+                [(ngModel)]="description"
+                [value]="description"
+                name="description"
+                style="size: 14px;"
+              ></textarea>
+              <label cLabel for="floatingTextarea2">Description : </label>
+            </div>
+    
+            <c-col [xs]="6">
+                <div class="mb-3">
+                  <input
+                    aria-label="file example"
+                    cFormControl
+                    name="image"
+                    type="file"
+                    (change)="recuperationImg($event)"
+                  />
+                  
+                </div>
+            </c-col>
+          </form>
+
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="UpdateFormation()"
+      >
+        Update
+      </button>
+    </div>
+    
+  
