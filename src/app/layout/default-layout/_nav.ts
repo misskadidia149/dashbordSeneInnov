@@ -53,8 +53,8 @@ export const navItems: INavData[] = [
     class: 'mt-auto'
   },
   {
-    name: 'Messages',
-    url: '/dashboard/messages',
+    name: 'Notifications',
+    url: '/dashboard/notifications',
     iconComponent: { name: 'cil-envelope-closed' },
     badge: {
       color: 'info',

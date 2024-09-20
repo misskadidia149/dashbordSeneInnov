@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MessagesComponent } from './messages.component';
+import { NotificationsComponent } from './notifications.component';
 
 const routes: Routes = [
     {
       path: '',
-      component: MessagesComponent,
+      component: NotificationsComponent,
       data: {
-        title: 'Message'
+        title: 'Notifications'
       }
     }
   ];

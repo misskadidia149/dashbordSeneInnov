@@ -55,22 +55,16 @@
               <div>
             <!-- <a href="#" class="dropdown-item"
             routerLink="/detailclinique/{{notif.clinique.id}}" > -->
-            <a href="#" class="dropdown-item">
+            <a href="/#/dashboard/notifications" class="dropdown-item">
               <div class="d-flex align-items-center">
                 <img
                   class="rounded-circle"
-                  src="./assets/img/avatars/8.jpg"
-                  alt=""
-                  style="width: 40px; height: 40px"
-                />
-                <img
-                  class="rounded-circle"
-                  src="./assets/img/avatars/8.jpg"
+                  src="../../../../assets/images/avatars/8.jpg"
                   alt=""
                   style="width: 40px; height: 40px"
                 />
                 <div class="ms-2">
-                  <h6 class="fw-normal mb-0">text</h6>
+                  <h6 class="fw-normal mb-0">Un niveau utilisateur vient d'etre creer</h6>
                   <!-- <h6 class="fw-normal mb-0">{{notif.titre}}</h6> -->
   
                   <!-- <small>{{notif.datenotif |date:"dd-MM-yyyy à HH:m:ss" }}</small> -->
@@ -79,7 +73,7 @@
                 </div>
               </div>
             </a>
-            <hr class="dropdown-divider" />
+            <!-- <hr class="dropdown-divider" />
             <a href="#" class="dropdown-item">
               <div class="d-flex align-items-center">
                 <img
@@ -108,12 +102,12 @@
                   <small>15 minutes ago</small>
                 </div>
               </div>
-            </a>
+            </a> -->
             <hr class="dropdown-divider" />
   
           </div>
   
-            <a href="/#/dashboard" class="dropdown-item text-center">Voir plus</a>
+            <a href="/#/dashboard/notifications" class="dropdown-item text-center">Voir plus</a>
          
   
         </div>
@@ -188,7 +182,7 @@
         </a>
       </li> -->
       <li>
-        <a cDropdownItem routerLink="/dashboard/messages" >
+        <a cDropdownItem routerLink="/dashboard/notifications" >
           <svg cIcon class="me-2" name="cilEnvelopeOpen"></svg>
           Messages
           <c-badge class="ms-2 float-end" color="success">

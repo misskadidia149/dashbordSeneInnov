@@ -1,0 +1,75 @@
+<c-row>
+    <c-col xs="12"> </c-col>
+    <c-col xs="12" lg="12">
+      <c-card class="mb-4">
+        <c-card-header> Statistique </c-card-header>
+        <c-card-body>
+          <c-row>
+              <c-col lg="4" sm="6" xs="12">
+                <c-widget-stat-f
+                  [title]="'total notifications'"
+                  class="mb-3"
+                  color="info"
+                  padding
+                  value="20"
+                > 
+                  <ng-template cTemplateId="widgetIconTemplate">
+                    <svg cIcon name="cilBell" size="xl" width="24"></svg>
+                  </ng-template>
+                </c-widget-stat-f>
+              </c-col>
+            </c-row>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
+  
+  
+  <c-row>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Notifications</strong>
+        </c-card-header>
+        <c-card-body>
+          <p class="text-body-secondary small">
+            Voici les notifications actuelles. Cliquez sur une notification pour voir plus de détails.
+          </p>
+          <div class="notification-container">
+            <!-- ceci sont des exemple ses donnee doivent etre recupere dans la base -->
+            <div class="notification system-message" (click)="openNotificationModal('message')">
+              <svg cIcon name="cilEnvelopeOpen" class="notification-icon" size="xl"></svg>
+              <div class="notification-content">Vous avez un nouveau message</div>
+              <div class="notification-timestamp">Il y a 2 heures</div>
+            </div>
+            <div class="notification system-alert" (click)="openNotificationModal('alert')">
+              <svg cIcon name="cilBell" class="notification-icon" size="xl"></svg>
+              <div class="notification-content">Il y a une alerte système</div>
+              <div class="notification-timestamp">Il y a 1 jour</div>
+            </div>
+            <div class="notification system-success" (click)="openNotificationModal('success')">
+              <svg cIcon name="cilCheckCircle" class="notification-icon" size="xl"></svg>
+              <div class="notification-content">Opération réussie</div>
+              <div class="notification-timestamp">Il y a 3 jours</div>
+            </div>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  
+    <!-- Modal for Notification Details 'c'est ici que je gere le template du modal le titre et
+     contenue c'est du props que j'ai passer-->
+    <c-modal [(visible)]="isModalVisible">
+      <c-modal-header>
+        <h5>{{ modalTitle }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </c-modal-header>
+      <c-modal-body>
+        <p>{{ modalContent }}</p>
+      </c-modal-body>
+      <c-modal-footer>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+      </c-modal-footer>
+    </c-modal>
+  </c-row>

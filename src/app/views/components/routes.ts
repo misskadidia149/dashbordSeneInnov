@@ -63,10 +63,10 @@ export const routes: Routes = [
         loadComponent: () => import('./formation/update-formation/update-formation.component').then(m => m.UpdateFormationComponent),
       },
       {
-        path: 'messages',
-        loadComponent: () => import('./messages/messages.component').then(m => m.MessagesComponent),
+        path: 'notifications',
+        loadComponent: () => import('./notifications/notifications.component').then(m => m.NotificationsComponent),
         data: {
-          title: 'Messages'
+          title: 'Notifications'
         },
       },
       {
