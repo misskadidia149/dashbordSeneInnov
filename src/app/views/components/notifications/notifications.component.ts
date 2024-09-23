@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import {
   AvatarModule,
   BadgeModule,
@@ -24,6 +23,8 @@ import {
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Notifications } from 'src/app/models/notification';
+import { NotificationService } from '../../../services/notification.service';
 
 
 @Component({
@@ -68,10 +69,28 @@ export class NotificationsComponent implements OnInit{
   isModalVisible = false;
   modalTitle = '';
   modalContent = '';
+  NbreNotification: any;
+  notif: Notifications[] = [];
 
-  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  constructor(private notification: NotificationService) {}
+  
+  ngOnInit(): void {
+    this.getNotifications();
+  }
+
+    getNotifications(): void {
+      this.notification.getNotification().subscribe(
+        (data: Notifications[]) => {
+          this.notif = data;
+          this.NbreNotification = this.notif.length
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des catégories', error);
+        }
+      );
+    }
+
   // c'est cette partie qui permet d' Ouvrir le modal avec les détails de la notification
   // si tu connecte avec une base tu dois laisser les case mais dans ta base de donnee il doit avoir
   // une colonne pour les type de notification enumere comme : message, alert, success

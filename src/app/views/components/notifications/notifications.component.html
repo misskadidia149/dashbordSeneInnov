@@ -11,7 +11,7 @@
                   class="mb-3"
                   color="info"
                   padding
-                  value="20"
+                  value="{{ NbreNotification }}"
                 > 
                   <ng-template cTemplateId="widgetIconTemplate">
                     <svg cIcon name="cilBell" size="xl" width="24"></svg>
@@ -40,8 +40,8 @@
             <!-- ceci sont des exemple ses donnee doivent etre recupere dans la base -->
             <div class="notification system-message" (click)="openNotificationModal('message')">
               <svg cIcon name="cilEnvelopeOpen" class="notification-icon" size="xl"></svg>
-              <div class="notification-content">Vous avez un nouveau message</div>
-              <div class="notification-timestamp">Il y a 2 heures</div>
+              <!-- <div class="notification-content">{{ notif.messages }}</div>
+              <div class="notification-timestamp">{{ notif.date }}</div> -->
             </div>
             <div class="notification system-alert" (click)="openNotificationModal('alert')">
               <svg cIcon name="cilBell" class="notification-icon" size="xl"></svg>
