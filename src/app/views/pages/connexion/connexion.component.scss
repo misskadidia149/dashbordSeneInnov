@@ -25,7 +25,7 @@ a {
     flex-direction: column; 
     justify-content: center;
     width: 100%;
-    min-height: 100%;
+    // min-height: 100%;
     padding: 20px;
   }
   
@@ -50,6 +50,10 @@ a {
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
+  }
+  
+  .formFooter2 {
+    text-align: center;
   }
   
   
@@ -197,6 +201,10 @@ a {
     -webkit-animation-delay: 0.4s;
     -moz-animation-delay: 0.4s;
     animation-delay: 0.4s;
+  }
+
+  .fadeIn.first img {
+    
   }
   
   .fadeIn.second {

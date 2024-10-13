@@ -10,7 +10,7 @@
             <c-widget-stat-f
               [title]="'Nombre d\'utilisateur'"
               class="mb-3"
-              color="info"
+              color="success"
               padding
               value="{{NbreUser}}"
             >
@@ -26,7 +26,7 @@
 </c-row>
 <!--CARDS DE ETAT ROBOT-->
 
-<h2>Liste de formation</h2>
+<h2>Liste d'utilisateurs</h2>
 <!--MODAL ROBOT-->
 <button class="btn btn-outline-primary mb-2 me-2" [cModalToggle]="contentw.id">
 Ajouter
@@ -93,7 +93,7 @@ Ajouter
 
 </c-modal-body>
 <c-modal-footer>
-  <button [cModalToggle]="contentw.id" cButton color="secondary" (click)="Create()">Créer</button>
+  <button [cModalToggle]="contentw.id" cButton color="warning" (click)="Create()">Créer</button>
 </c-modal-footer>
 </c-modal>
 <!--MODAL CREATION-->
@@ -106,7 +106,6 @@ Ajouter
   </c-modal-header>
   <c-modal-body>
     <form class="row g-3">
-      
 
       <div class="col-lg-12">
         <div class="card mb-8">
@@ -116,7 +115,7 @@ Ajouter
                 <p class="mb-0">Nom & Prenom</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{nomEtPrenom}}</p>
+                <p class="text-muted mb-0">{{selectedUser.nomEtPrenom}}</p>
               </div>
             </div>
             <hr>
@@ -143,10 +142,10 @@ Ajouter
                 <p class="mb-0">Pocession robot</p>
               </div>
               <div class="col-sm-9">
-                <c-badge color="success"> 
+                <c-badge color="success">
                   <span *ngIf="selectedUser.robot" class="valid">Confirmer</span>
                 </c-badge>
-                <c-badge color="warning"> 
+                <c-badge color="warning">
                   <span *ngIf="!selectedUser.robot" class="non-valid">Non confirmer</span>
                 </c-badge>
               </div>
@@ -195,7 +194,7 @@ Ajouter
           </td>
         
             <td>
-              <div class="txt">{{ user.nomEtPrenom }}</div>
+              <div class="txt">{{ user.username }}</div>
             </td>
             <td class="text-center" style="font-size: 13px;">
               {{ user.username }}

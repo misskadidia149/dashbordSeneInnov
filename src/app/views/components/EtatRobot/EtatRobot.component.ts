@@ -37,6 +37,7 @@ import {
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 
 type CardColor = {
   color: string
@@ -94,13 +95,26 @@ type CardColor = {
   ]
 })
 export class EtatRobotComponent  implements OnInit{
+  robots: any;
+  NbreRobot: any;
+  p: any;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private utilisateurService: UtilisateurService) { }
 
   ngOnInit(): void {
-
+this.getRobot();
   }
-
+  getRobot(): void {
+    this.utilisateurService.getRobot().subscribe(
+      (data) => {
+        this.robots = data;
+        this.NbreRobot = this.robots.length;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération', error);
+      }
+    );
+  }
 
   openLg(content: any) {
 		this.modalService.open(content, { size: 'lg' });

@@ -210,8 +210,8 @@ export class DashboardComponent implements OnInit {
     labels: [...this.months].slice(0, 7),
     datasets: [
       {
-        label: 'GitHub Commits',
-        backgroundColor: '#f87979',
+        label: 'Bar',
+        backgroundColor: '#F4B401',
         data: [40, 20, 12, 39, 17, 42, 79]
       }
     ]

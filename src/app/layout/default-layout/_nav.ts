@@ -5,10 +5,10 @@ export const navItems: INavData[] = [
     name: 'Tableau de Bord',
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW'
+    // }
   },
   {
     name: 'Gestion des Robots',
@@ -16,7 +16,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Etat des robots',
-    iconComponent: { name: 'cil-home' },
+    iconComponent: { name: 'cil-check' },
     url: '/dashboard/etat-robots'
   },
   {
@@ -32,10 +32,10 @@ export const navItems: INavData[] = [
     name: 'Utilisateurs',
     iconComponent: { name: 'cil-user-follow' },
     url: '/dashboard/utilisateurs',
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    },
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW'
+    // },
     },
     {
       name: 'Catégories',

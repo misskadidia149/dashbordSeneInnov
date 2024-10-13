@@ -1,6 +1,7 @@
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { User } from '@angular/fire/auth';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {
   AvatarComponent,
@@ -28,6 +29,7 @@ import {
 import { IconDirective } from '@coreui/icons-angular';
 import { delay, filter, map, tap } from 'rxjs/operators';
 import { StorageService } from 'src/app/services/storage.services';
+import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -43,6 +45,17 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
   readonly colorMode = this.#colorModeService.colorMode;
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
   private readonly router: Router = inject(Router); // Ajouter Router ici
+  utilisateurs: User[] = [];
+  users:any
+  NbreUser:any;
+
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  showAdminBoard = false;
+  showUserBoard = false;
+  username?: string;
 
   readonly colorModes = [
     { name: 'light', text: 'Light', icon: 'cilSun' },
@@ -56,7 +69,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
   });
 
   constructor( 
-    private storage: StorageService) {
+    private storage: StorageService, private utilisateurService: UtilisateurService) {
     super();
     this.#colorModeService.localStorageItemName.set('coreui-free-angular-admin-template-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
@@ -74,10 +87,25 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
       .subscribe();
   }
   ngOnInit(): void {
+    // this.getUtilisateurs();
+
+    this.isLoggedIn = !!this.storage.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.storage.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+      this.username = user.username;
+    }
+
+    if (this.storage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.storage.getUser().roles;
+    }
 
   }
-
-  
 
   @Input() sidebarId: string = 'sidebar1';
 

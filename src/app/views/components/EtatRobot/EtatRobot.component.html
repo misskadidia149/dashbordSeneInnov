@@ -6,22 +6,16 @@
   <c-col xs="12"> </c-col>
   <c-col xs="12" lg="12">
     <c-card class="mb-4">
-      <c-card-header> Statistique generale </c-card-header>
+      <c-card-header> Statistique générale </c-card-header>
       <c-card-body>
         <c-row>
           <c-col lg="6" sm="6" xs="12">
-            <!-- <c-widget-stat-f
-              [title]="'Nombre de specialite'"
-              class="mb-3"
-              color="info"
-              padding
-              value="{{NbreSpecialite}}"
-            > -->
             <c-widget-stat-f
             [title]="'Nombre de robot'"
             class="mb-3"
-            color="info"
+            color="success"
             padding
+            value="{{NbreRobot}}"
           >
               <ng-template cTemplateId="widgetIconTemplate">
                 <svg cIcon name="cilUser" size="xl" width="24"></svg>
@@ -35,15 +29,15 @@
 </c-row>
 <!--CARDS DE ETAT ROBOT-->
 
-<h2>Liste des robot</h2>
+<h2>Liste des robots</h2>
 <!--MODAL ROBOT-->
-<button class="btn btn-outline-primary mb-2 me-2" (click)="open(content)">
+<!-- <button class="btn btn-outline-primary mb-2 me-2" (click)="open(content)">
   Ajouter
-</button>
+</button> -->
 <!--MODAL ROBOT-->
 
 <!--MODAL CREATION-->
-<ng-template #content let-c="close" let-d="dismiss">
+<!-- <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Nouvel spécialité</h4>
     <button
@@ -57,14 +51,7 @@
     <form cForm class="row g-3">
       <c-col [xs]="12">
         <label cLabel for="libelle">Libelle *</label>
-        <!-- <input
-          cFormControl
-          id="libelle"
-          name="libelle"
-          placeholder="Libelle"
-          [(ngModel)]="libelle"
-          required
-        /> -->
+     
         <input
         cFormControl
         id="libelle"
@@ -75,15 +62,6 @@
       </c-col>
 
       <div cFormFloating>
-        <!-- <textarea
-          [ngStyle]="{ 'height.px': 100 }"
-          cFormControl
-          id="description"
-          name="description"
-          [(ngModel)]="description"
-          required
-        >
-        </textarea> -->
         <textarea
           [ngStyle]="{ 'height.px': 100 }"
           cFormControl
@@ -96,15 +74,7 @@
       </div>
 
       <div class="mb-3">
-        <!-- <input
-          aria-label="file example"
-          cFormControl
-          id="image"
-          name="image"
-          type="file"
-          (change)="recuperationImg($event)"
-          required
-        /> -->
+        
         <input
           aria-label="file example"
           cFormControl
@@ -119,16 +89,7 @@
       </div>
     </form>
   </div>
-  <!-- <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="c('Save click')"
-      (click)="Create()"
-    >
-      Creer
-    </button>
-  </div> -->
+ 
   <div class="modal-footer">
     <button
       type="button"
@@ -138,150 +99,79 @@
       Créer
     </button>
   </div>
-</ng-template>
+</ng-template> -->
 <!--MODAL CREATION-->
 
 
 
-
-  <c-col xs="12">
+  <!-- Table list utilisateur -->
+<c-row>
+  <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>
-        <strong>Liste d'etats des robots</strong>
-      </c-card-header>
+      <c-card-header>Utilisateurs</c-card-header>
+      <table
+        [hover]="true"
+        [responsive]="true"
+        [striped]="true"
+        align="middle"
+        cTable
+        class="mb-0 border"
+      >
+        <thead cTableColor="light">
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Localiter</th>
+            <th>Agriculteur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let robot of robots
+            | paginate : { itemsPerPage: 4, currentPage: p };
+          let id = index">
+          <td>
+            {{ id+1 }}
+          </td>
+        
+            <td>
+              <div class="txt">{{ robot.date | date:'yy/dd/yyyy HH:mm:ss' }}</div>
+            </td>
+            <td class="txt">
+              {{ robot.longitude }}
+            </td>
+            <td class="text-center">
+              {{ robot.latitude }}
+            </td>
+            <td class="txt">
+              Bamako, Mali
+            </td>
 
+            <td class="text-center">
+              <c-badge color="success">
+                <span class="valid">{{ robot.agriculteur.nomEtPrenom }}</span>
+              </c-badge>
+            </td>
+           
+    
 
-      <c-card-body>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="main-box clearfix">
-                <div class="table-responsive">
-                  <table class="table user-list">
-                    <thead>
-                      <tr>
-                        <th><span>Identifiant</span></th>
-                        <th><span>Etat</span></th>
-                        <th><span>Position</span></th>
-                        <th><span>Agriculteur</span></th>
-                        <th><span>Action</span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          #1
-                        </td>
-                        <td class="text-center">
-                          <span class="label label-default">Actif</span>
-                        </td>
-                        <td>
-                          <span class="label label-default"> Bamako,Missabougou</span>
-                        </td>
-                        <td>
-                          <span class="label label-default"> USER1</span>
-                        </td>
-                        <td style="width: 20%;">
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link danger">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          #2
-                        </td>
-                        <td class="text-center">
-                          <span class="label label-default">Inactif</span>
-                        </td>
-                        <td>
-                          <span class="label label-default">_</span>
-                          
-                        </td>
-                        <td>
-                          <span class="label label-default"> _</span>
-                        </td>
-                        <td style="width: 20%;">
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link danger">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          #3
-                        </td>
-                        <td class="text-center">
-                          <span class="label label-default">Actif</span>
-                        </td>
-                        <td>
-                          <span class="label label-default"> Bamako,Missabougou</span>
-                          
-                        </td>
-                        <td>
-                          <span class="label label-default"> USER1</span>
-                        </td>
-                        <td style="width: 20%;">
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="#" class="table-link danger">
-                            <span class="fa-stack">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                
-                     
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-      </c-card-body>
+          </tr>
+        </tbody>
+      </table>
     </c-card>
   </c-col>
- 
+</c-row>
+<!-- Table list utilisateur -->
+
+
+
+<div class="listvide" *ngIf="NbreRobot==0">
+  <label>Il n'y existe pas encore de robot actifs</label>
+  </div>
+
+  <!--PAGINATION DE TABLE-->
+<div class="pagination">
+<pagination-controls color="success" (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
+</div>
+<!--PAGINATION DE TABLE-->

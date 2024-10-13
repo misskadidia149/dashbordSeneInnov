@@ -31,6 +31,7 @@ import {
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Agriculteur } from 'src/app/models/agriculteur';
 import { User } from 'src/app/models/utilisateurs';
 import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 import { environment } from 'src/environments/environment';
@@ -151,7 +152,7 @@ export class UtilisateursComponent implements OnInit {
   // Méthode pour récupérer les utilisateurs depuis le service
   getUtilisateurs(): void {
     this.utilisateurService.getAllUser().subscribe(
-      (data: User[]) => {
+      (data: Agriculteur[]) => {
         this.users = data; // Stockage des utilisateurs récupérés
         this.NbreUser = this.users.length;
       },

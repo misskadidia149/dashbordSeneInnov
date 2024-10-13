@@ -2,18 +2,19 @@
 <c-sidebar
   #sidebar1="cSidebar"
   class="d-print-none sidebar sidebar-fixed border-end"
-  colorScheme="dark"
+  colorScheme="light"
   id="sidebar1"
   visible
 >
   <c-sidebar-header class="border-bottom">
-    <c-sidebar-brand [routerLink]="[]">
+    <c-sidebar-brand style="position: absolute;top: -80px;left: -30px">
       <!-- <svg [class]="{icon: false}" cIcon class="sidebar-brand-full" height="32" name="logo" title="CoreUI Logo"></svg>   -->
-       <img src="assets/images/7-removebg-preview.png" alt="SeneInnov" class="sidebar-logo" height="260" width="270" />
+       <img src="assets/images/7-removebg-preview.png" alt="SeneInnov"  height="310" width="320" />
     </c-sidebar-brand>
   </c-sidebar-header>
 
-  <ng-scrollbar #scrollbar="ngScrollbar" (updated)="onScrollbarUpdate(scrollbar.state)" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
+  <ng-scrollbar style="margin-top: 7rem;cursor: none;"
+  #scrollbar="ngScrollbar" (updated)="onScrollbarUpdate(scrollbar.state)" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
     <c-sidebar-nav #overflow [navItems]="navItems" dropdownMode="close" compact />
   </ng-scrollbar>
   @if (!sidebar1.narrow) {
