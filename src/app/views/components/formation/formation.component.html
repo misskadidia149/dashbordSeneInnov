@@ -10,7 +10,7 @@
               <c-widget-stat-f
                 [title]="'Nombre de formation'"
                 class="mb-3"
-                color="info"
+                color="success"
                 padding
                 value="{{NbreFomation}}"
               >
@@ -296,7 +296,7 @@
                 <div class="btn-group">
                   <a id="btn-1" class="btn btn-outline-primary" 
                   [cModalToggle]="formationModal.id"
-                   (click)="openFormation(f.id)" 
+                   (click)="openFormation(f.id)"
                   title="Details">
                     <i class="far fa-eye"></i>
                   </a>

@@ -12,7 +12,10 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
 
-  getNotification(): Observable<Notifications[]> {
-    return this.http.get<Notifications[]>(`${this.env.api}` + `/api/notification/read`);
+  getNotificationDESC(): Observable<Notifications[]> {
+    return this.http.get<Notifications[]>(`${this.env.api}` + `/api/notification/readLast`);
+  }
+  getNotificationLIMIT3(): Observable<Notifications[]> {
+    return this.http.get<Notifications[]>(`${this.env.api}` + `/api/notification/readThreeLast`);
   }
 }

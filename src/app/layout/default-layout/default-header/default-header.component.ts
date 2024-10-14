@@ -1,4 +1,4 @@
-import { NgStyle, NgTemplateOutlet } from '@angular/common';
+import { CommonModule, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { User } from '@angular/fire/auth';
@@ -28,6 +28,8 @@ import {
 } from '@coreui/angular';
 import { IconDirective } from '@coreui/icons-angular';
 import { delay, filter, map, tap } from 'rxjs/operators';
+import { Notifications } from 'src/app/models/notification';
+import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.services';
 import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 import Swal from 'sweetalert2';
@@ -36,7 +38,7 @@ import Swal from 'sweetalert2';
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
   standalone: true,
-  imports: [ContainerComponent, HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, NavItemComponent, NavLinkDirective, RouterLink, RouterLinkActive, NgTemplateOutlet, BreadcrumbRouterComponent, ThemeDirective, DropdownComponent, DropdownToggleDirective, TextColorDirective, AvatarComponent, DropdownMenuDirective, DropdownHeaderDirective, DropdownItemDirective, BadgeComponent, DropdownDividerDirective, ProgressBarDirective, ProgressComponent, NgStyle]
+  imports: [ContainerComponent, CommonModule,HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, NavItemComponent, NavLinkDirective, RouterLink, RouterLinkActive, NgTemplateOutlet, BreadcrumbRouterComponent, ThemeDirective, DropdownComponent, DropdownToggleDirective, TextColorDirective, AvatarComponent, DropdownMenuDirective, DropdownHeaderDirective, DropdownItemDirective, BadgeComponent, DropdownDividerDirective, ProgressBarDirective, ProgressComponent, NgStyle]
 })
 export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
 
@@ -69,7 +71,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
   });
 
   constructor( 
-    private storage: StorageService, private utilisateurService: UtilisateurService) {
+    private storage: StorageService, private utilisateurService: UtilisateurService, private notification: NotificationService) {
     super();
     this.#colorModeService.localStorageItemName.set('coreui-free-angular-admin-template-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
@@ -87,7 +89,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
       .subscribe();
   }
   ngOnInit(): void {
-    // this.getUtilisateurs();
+    this.getNotifications();
 
     this.isLoggedIn = !!this.storage.getToken();
 
@@ -106,6 +108,21 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
     }
 
   }
+  
+
+  notif:any;
+  NbreNotification:any;
+    getNotifications(): void {
+      this.notification.getNotificationLIMIT3().subscribe(
+        (data: Notifications[]) => {
+          this.notif = data;
+          this.NbreNotification = this.notif.length
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération', error);
+        }
+      );
+    }
 
   @Input() sidebarId: string = 'sidebar1';
 

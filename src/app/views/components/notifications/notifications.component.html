@@ -9,10 +9,10 @@
                 <c-widget-stat-f
                   [title]="'total notifications'"
                   class="mb-3"
-                  color="info"
+                  color="warning"
                   padding
                   value="{{ NbreNotification }}"
-                > 
+                >
                   <ng-template cTemplateId="widgetIconTemplate">
                     <svg cIcon name="cilBell" size="xl" width="24"></svg>
                   </ng-template>
@@ -33,28 +33,48 @@
           <strong>Notifications</strong>
         </c-card-header>
         <c-card-body>
-          <p class="text-body-secondary small">
+          <!-- <p class="text-body-secondary small">
             Voici les notifications actuelles. Cliquez sur une notification pour voir plus de détails.
-          </p>
-          <div class="notification-container">
+          </p> -->
+          <div class="notif cation-container" *ngFor="let n of notif | paginate : { itemsPerPage: 4, currentPage: p };">
+
+            <div class="listvide" *ngIf="NbreNotification==0">
+              <label>Il n'y existe pas encore de notification.</label>
+            </div>
+
             <!-- ceci sont des exemple ses donnee doivent etre recupere dans la base -->
-            <div class="notification system-message" (click)="openNotificationModal('message')">
+            <!-- <div class="notification system-message" (click)="openNotificationModal('message')">
               <svg cIcon name="cilEnvelopeOpen" class="notification-icon" size="xl"></svg>
-              <!-- <div class="notification-content">{{ notif.messages }}</div>
-              <div class="notification-timestamp">{{ notif.date }}</div> -->
-            </div>
-            <div class="notification system-alert" (click)="openNotificationModal('alert')">
+              <div class="notification-content">{{ n.messages }}</div>
+              <div class="notification-timestamp">{{ n.date }}</div>
+            </div> -->
+            <div class="notification system-alert">
               <svg cIcon name="cilBell" class="notification-icon" size="xl"></svg>
-              <div class="notification-content">Il y a une alerte système</div>
-              <div class="notification-timestamp">Il y a 1 jour</div>
+              <div class="notification-content">{{n.id}} - {{ n.messages }}</div>
+              <div class="notification-timestamp">{{ n.date | date:'dd/MM/yyyy - HH:mm:ss' }}</div>
             </div>
-            <div class="notification system-success" (click)="openNotificationModal('success')">
+            <!-- <div class="notification system-success" (click)="openNotificationModal('success')">
               <svg cIcon name="cilCheckCircle" class="notification-icon" size="xl"></svg>
               <div class="notification-content">Opération réussie</div>
               <div class="notification-timestamp">Il y a 3 jours</div>
-            </div>
+            </div> -->
           </div>
         </c-card-body>
+
+        <!-- <div class="pagination">
+          <pagination-controls (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
+        </div> -->
+
+        <div class="pagination custom-pagination">
+          <pagination-controls 
+            (pageChange)="p = $event" 
+            nextLabel="Suivants" 
+            previousLabel="Précédents">
+          </pagination-controls>
+        </div>
+
+        
+
       </c-card>
     </c-col>
   

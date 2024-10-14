@@ -11,14 +11,14 @@
         <c-row>
           <c-col lg="6" sm="6" xs="12">
             <c-widget-stat-f
-            [title]="'Nombre de robot'"
+            [title]="'Nombre de robots activés'"
             class="mb-3"
-            color="success"
+            color="warning"
             padding
             value="{{NbreRobot}}"
           >
               <ng-template cTemplateId="widgetIconTemplate">
-                <svg cIcon name="cilUser" size="xl" width="24"></svg>
+                <svg cIcon name="cilCheck" size="xl" width="24"></svg>
               </ng-template>
             </c-widget-stat-f>
           </c-col>
@@ -108,7 +108,7 @@
 <c-row>
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>Utilisateurs</c-card-header>
+      <!-- <c-card-header>Utilisateurs</c-card-header> -->
       <table
         [hover]="true"
         [responsive]="true"
@@ -123,7 +123,7 @@
             <th>Date</th>
             <th>Longitude</th>
             <th>Latitude</th>
-            <th>Localiter</th>
+            <th>Localité</th>
             <th>Agriculteur</th>
           </tr>
         </thead>
@@ -132,11 +132,12 @@
             | paginate : { itemsPerPage: 4, currentPage: p };
           let id = index">
           <td>
-            {{ id+1 }}
+            <!-- {{ id+1 }} -->
+            {{ robot.id }}
           </td>
         
             <td>
-              <div class="txt">{{ robot.date | date:'yy/dd/yyyy HH:mm:ss' }}</div>
+              <div class="txt">{{ robot.date | date:'yy/dd/yyyy - HH:mm:ss' }}</div>
             </td>
             <td class="txt">
               {{ robot.longitude }}
@@ -149,8 +150,8 @@
             </td>
 
             <td class="text-center">
-              <c-badge color="success">
-                <span class="valid">{{ robot.agriculteur.nomEtPrenom }}</span>
+              <c-badge color="warning">
+                <span class="valid" style="color:black">{{ robot.agriculteur.nomEtPrenom }}</span>
               </c-badge>
             </td>
            
@@ -171,7 +172,7 @@
   </div>
 
   <!--PAGINATION DE TABLE-->
-<div class="pagination">
-<pagination-controls color="success" (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
+<div>
+<pagination-controls color="warning" (pageChange)="p = $event" nextLabel="Suivants" previousLabel="Précédents"></pagination-controls>
 </div>
 <!--PAGINATION DE TABLE-->

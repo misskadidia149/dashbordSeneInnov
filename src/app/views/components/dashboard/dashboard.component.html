@@ -4,20 +4,24 @@
   <c-col xs="12" lg="12">
     <c-card class="mb-4">
       <c-card-header>
-        Statistique generale
+        Statistiques générales
       </c-card-header>
       <c-card-body>
         <div class="container">
-          <div class="row ">
+          <div class="row">
             <div class="col-xl-3 col-lg-3">
                 <div class="card l-bg-blue-gris">
                     <div class="card-statistic-3 p-4">
-                      <!-- <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>  -->
+
+                      <!-- <div class="card-icon card-icon-large"><i class="fas fa-user"></i></div> -->
+
+                      <div class="card-icon2 card-icon-large2"><img src="assets/images/user-interface.png" style="width: 4rem; height: 4rem;"></div>
+
                         <div class="mb-4">
                             <h5 class="card-title mb-0">Utilisateurs</h5>
                         </div>
                         <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
+                            <div class="col-5">
                                 <h2 class="d-flex align-items-center mb-0">
                                     {{ NbreUser }}
                                 </h2>
@@ -33,6 +37,8 @@
               <div class="col-xl-3 col-lg-3">
                 <div class="card l-bg-blue-gris">
                     <div class="card-statistic-3 p-4">
+                        <div class="card-icon2 card-icon-large2"><img src="assets/images/robot.png" style="width: 5rem; height: 5rem;"></div>
+
                           <!-- <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div> -->
                           <div class="mb-4">
                               <h5 class="card-title mb-0">Robots Actifs</h5>
@@ -40,7 +46,7 @@
                           <div class="row align-items-center mb-2 d-flex">
                               <div class="col-8">
                                   <h2 class="d-flex align-items-center mb-0">
-                                      {{ NbreCategorie }}
+                                      {{ NbreRobot }}
                                   </h2>
                               </div>
                             
@@ -54,6 +60,7 @@
               <div class="col-xl-3 col-lg-3">
                 <div class="card l-bg-blue-gris">
                     <div class="card-statistic-3 p-4">
+                        <div class="card-icon2 card-icon-large2"><img src="assets/images/menu.png" style="width: 4rem; height: 4rem;"></div>
                           <!-- <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div> -->
                           <div class="mb-4">
                               <h5 class="card-title mb-0">Catégories</h5>
@@ -75,6 +82,8 @@
               <div class="col-xl-3 col-lg-3">
                 <div class="card l-bg-blue-gris">
                     <div class="card-statistic-3 p-4">
+                        <div class="card-icon2 card-icon-large2"><img src="assets/images/mortier.png" style="width: 4rem; height: 4rem;"></div>
+
                         <!-- <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div> -->
                           <div class="mb-4">
                               <h5 class="card-title mb-0">Formations</h5>
@@ -106,7 +115,32 @@
         Graphique
       </c-card-header>
       <c-card-body>
-        <c-chart type="bar" [data]="chartBarData" [options]="options" />
+
+        <c-row>
+            <c-col xs="12" lg="6">
+              <c-card class="mb-4">
+                <c-card-header>
+                  Doughnut Chart
+                </c-card-header>
+                <c-card-body>
+                  <c-chart type="doughnut" [data]="chartDoughnutData" [options]="options" />
+                </c-card-body>
+              </c-card>
+            </c-col>
+            <c-col xs="12" lg="6">
+              <c-card class="mb-4">
+                <c-card-header>
+                  Pie Chart
+                </c-card-header>
+                <c-card-body>
+                  <c-chart type="pie" [data]="chartPieData" [options]="options" />
+                </c-card-body>
+              </c-card>
+            </c-col>
+          </c-row>
+
+        <!-- <c-chart type="bar" [data]="chartBarData" [options]="options" /> -->
+         
       </c-card-body>
     </c-card>
   </c-col>

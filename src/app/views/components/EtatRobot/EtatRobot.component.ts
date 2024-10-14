@@ -108,6 +108,7 @@ this.getRobot();
     this.utilisateurService.getRobot().subscribe(
       (data) => {
         this.robots = data;
+        console.log(data);
         this.NbreRobot = this.robots.length;
       },
       (error) => {

@@ -37,8 +37,8 @@
               size="lg"
               class="position-relative mx-2"
             ></svg>
-            <c-badge color="danger" position="top-end" shape="rounded-pill"
-              >30</c-badge
+            <c-badge color="warning" position="top-end" shape="rounded-pill"
+              >{{ NbreNotification }}</c-badge
             >
             <span class="d-none d-lg-inline-flex">Notifications</span>
           </a>
@@ -55,23 +55,23 @@
               <div>
             <!-- <a href="#" class="dropdown-item"
             routerLink="/detailclinique/{{notif.clinique.id}}" > -->
-            <a href="/#/dashboard/notifications" class="dropdown-item">
+            <a href="/#/dashboard/notifications" class="dropdown-item" *ngFor="let n of notif">
               <div class="d-flex align-items-center">
-                <img
+                <!-- <img
                   class="rounded-circle"
                   src="../../../../assets/images/avatars/8.jpg"
                   alt=""
                   style="width: 40px; height: 40px"
-                />
+                /> -->
                 <div class="ms-2">
-                  <h6 class="fw-normal mb-0">Un niveau utilisateur vient d'etre creer</h6>
+                  <h6 class="fw-normal mb-0">{{n.messages}}</h6>
                   <!-- <h6 class="fw-normal mb-0">{{notif.titre}}</h6> -->
   
-                  <!-- <small>{{notif.datenotif |date:"dd-MM-yyyy à HH:m:ss" }}</small> -->
-                  <small>18/04/2024</small>
+                  <small>{{n.date | date:"dd-MM-yyyy à HH:m:ss" }}</small>
   
                 </div>
               </div>
+                     <hr class="dropdown-divider" />
             </a>
             <!-- <hr class="dropdown-divider" />
             <a href="#" class="dropdown-item">

@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit {
     this.getCategories();
     this.getFormation();
     this.getUsers();
+    this.getRobot();
   }
 
   initCharts(): void {
@@ -250,6 +251,20 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  robots: any;
+  NbreRobot: any;
+  getRobot(): void {
+    this.utilisateurService.getRobot().subscribe(
+      (data) => {
+        this.robots = data;
+        this.NbreRobot = this.robots.length;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération', error);
+      }
+    );
+  }
+
   utilisateurs: any;
   NbreUser:any;
   getUsers(): void {
@@ -264,5 +279,25 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  chartPieData: ChartData = {
+    labels: ['Red', 'Green', 'Yellow'],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      }
+    ]
+  };
+
+  chartDoughnutData: ChartData = {
+    labels: ['VueJs', 'EmberJs', 'ReactJs', 'Angular'],
+    datasets: [
+      {
+        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+        data: [40, 20, 80, 10]
+      }
+    ]
+  };
 
 }

@@ -2,11 +2,12 @@
   .ng-scrollbar {
     --scrollbar-padding: 1px;
     --scrollbar-size: 5px;
-    --scrollbar-thumb-color: var(--cui-gray-500, #999);
-    --scrollbar-thumb-hover-color: var(--cui-gray-400, #999);
+    --scrollbar-thumb-color: var(--cui-gray-500, #079101);
+    --scrollbar-thumb-hover-color: var(--cui-gray-400, #079101);
     --scrollbar-hover-size: calc(var(--scrollbar-size) * 1.5);
   }
 }
+//  #079101
 // ng-scrollbar css variables
 //.cui-scrollbar {
 //  --scrollbar-border-radius: 7px;

@@ -70,6 +70,8 @@ export class NotificationsComponent implements OnInit{
   modalTitle = '';
   modalContent = '';
   NbreNotification: any;
+  // notif: any;
+  p:any;
   notif: Notifications[] = [];
 
 
@@ -80,13 +82,14 @@ export class NotificationsComponent implements OnInit{
   }
 
     getNotifications(): void {
-      this.notification.getNotification().subscribe(
+      this.notification.getNotificationDESC().subscribe(
         (data: Notifications[]) => {
           this.notif = data;
+          console.log(data);
           this.NbreNotification = this.notif.length
         },
         (error) => {
-          console.error('Erreur lors de la récupération des catégories', error);
+          console.error('Erreur lors de la récupération.', error);
         }
       );
     }

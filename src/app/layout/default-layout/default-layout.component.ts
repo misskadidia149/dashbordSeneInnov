@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 
-import { IconDirective } from '@coreui/icons-angular';
 import {
   ContainerComponent,
   ShadowOnScrollDirective,
@@ -14,6 +13,7 @@ import {
   SidebarToggleDirective,
   SidebarTogglerDirective
 } from '@coreui/angular';
+import { IconDirective } from '@coreui/icons-angular';
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
@@ -52,8 +52,8 @@ export class DefaultLayoutComponent {
   public navItems = navItems;
 
   onScrollbarUpdate($event: any) {
-    // if ($event.verticalUsed) {
-    // console.log('verticalUsed', $event.verticalUsed);
-    // }
+    if ($event.verticalUsed) {
+    console.log('verticalUsed', $event.verticalUsed);
+    }
   }
 }

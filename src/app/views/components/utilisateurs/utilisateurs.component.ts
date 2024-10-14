@@ -137,12 +137,19 @@ export class UtilisateursComponent implements OnInit {
         (data) => {
           this.selectedUser = data;
           // this.modalService.open(content, { size: 'lg' });
-          console.log(this.selectedUser)
-          this.id = this.selectedUser.id
-          this.nomEtPrenom = this.selectedUser.nomEtPrenom
-          this.username = this.selectedUser.username
-          this.telephone = this.selectedUser.telephone
-          this.robot = this.selectedUser.robot
+          console.log(this.selectedUser);
+  
+          this.id = this.selectedUser[0].id
+          this.nomEtPrenom = this.selectedUser[0].nomEtPrenom
+          this.username = this.selectedUser[0].username
+          this.telephone = this.selectedUser[0].telephone
+          this.robot = this.selectedUser[0].robot
+
+          console.log(this.id);
+          console.log(this.nomEtPrenom);
+          console.log(this.username);
+          console.log(this.telephone);
+          console.log(this.robot);
         },
         (err) => {
         }
@@ -154,6 +161,7 @@ export class UtilisateursComponent implements OnInit {
     this.utilisateurService.getAllUser().subscribe(
       (data: Agriculteur[]) => {
         this.users = data; // Stockage des utilisateurs récupérés
+        console.log(data);
         this.NbreUser = this.users.length;
       },
       (error) => {
@@ -194,7 +202,7 @@ export class UtilisateursComponent implements OnInit {
 
             Delete(id:any){
               this.utilisateurService.delete(id).subscribe({
-                next: data => { 
+                next: data => {
                 console.log(data);
                 },
                 error: err => {
@@ -211,7 +219,7 @@ export class UtilisateursComponent implements OnInit {
                   heightAuto: false,
                   showConfirmButton: true,
                   confirmButtonText: "Supprimer",
-                  confirmButtonColor: 'warning',
+                  confirmButtonColor: 'danger',
                   showCancelButton: true,
                   cancelButtonText: 'Annuler',
                   showDenyButton: false,

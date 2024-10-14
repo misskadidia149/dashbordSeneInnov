@@ -3,14 +3,14 @@
   <c-col xs="12"> </c-col>
   <c-col xs="12" lg="12">
     <c-card class="mb-4">
-      <c-card-header> Statistique generale </c-card-header>
+      <c-card-header> Statistique générale </c-card-header>
       <c-card-body>
         <c-row>
           <c-col lg="6" sm="6" xs="12">
             <c-widget-stat-f
               [title]="'Nombre d\'utilisateur'"
               class="mb-3"
-              color="success"
+              color="warning"
               padding
               value="{{NbreUser}}"
             >
@@ -26,16 +26,16 @@
 </c-row>
 <!--CARDS DE ETAT ROBOT-->
 
-<h2>Liste d'utilisateurs</h2>
+<h2>Liste des utilisateurs</h2>
 <!--MODAL ROBOT-->
-<button class="btn btn-outline-primary mb-2 me-2" [cModalToggle]="contentw.id">
+<button class="btn btn-warning mb-2 me-2" [cModalToggle]="contentw.id">
 Ajouter
 </button>
 
 <!--MODAL CREATION-->
 <c-modal #contentw backdrop="static" id="contentw">
 <c-modal-header>
-  <h4 cModalTitle>Nouvelle formation</h4>
+  <h4 cModalTitle>Nouveau utilisateur</h4>
   <button [cModalToggle]="contentw.id" cButtonClose></button>
 </c-modal-header>
 <c-modal-body>
@@ -111,42 +111,42 @@ Ajouter
         <div class="card mb-8">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom & Prenom</p>
+              <div class="col-sm-5">
+                <p class="mb-0">Nom & Prenom : </p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{selectedUser.nomEtPrenom}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom d'utilisateur</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{selectedUser.username}}</p>
+              <div class="col-sm-7">
+                <p class="text-muted mb-0">{{nomEtPrenom}}</p>
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Telephone</p>
+              <div class="col-sm-5">
+                <p class="mb-0">Nom d'utilisateur : </p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{selectedUser.telephone}}</p>
+              <div class="col-sm-7">
+                <p class="text-muted mb-0">{{username}}</p>
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Pocession robot</p>
+              <div class="col-sm-5">
+                <p class="mb-0">Telephone : </p>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0">{{telephone}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0">Pocession robot : </p>
+              </div>
+              <div class="col-sm-7">
                 <c-badge color="success">
-                  <span *ngIf="selectedUser.robot" class="valid">Confirmer</span>
+                  <span *ngIf="robot" class="valid">Confirmer</span>
                 </c-badge>
                 <c-badge color="warning">
-                  <span *ngIf="!selectedUser.robot" class="non-valid">Non confirmer</span>
+                  <span *ngIf="!robot" class="non-valid">Non confirmer</span>
                 </c-badge>
               </div>
             </div>
@@ -160,7 +160,7 @@ Ajouter
     <button [cModalToggle]="userModal.id" cButton color="secondary">Fermer</button>
   </c-modal-footer>
 </c-modal>
- <!-- MODAL DÉTAILS -->
+<!-- MODAL DÉTAILS -->
 
 <!-- Table list utilisateur -->
 <c-row>
@@ -202,12 +202,11 @@ Ajouter
             <td class="txt">
               {{ user.telephone }}
             </td>
-
             <td class="text-center">
-              <c-badge color="success"> 
+              <c-badge color="success">
                 <span *ngIf="user.robot" class="valid">Confirmer</span>
               </c-badge>
-              <c-badge color="warning"> 
+              <c-badge color="warning">
                 <span *ngIf="!user.robot" class="non-valid">Non confirmer</span>
               </c-badge>
               <!-- {{ rdv.active }} -->
@@ -215,18 +214,12 @@ Ajouter
            
             <td class="text-center">
               <div class="btn-group">
-                <a id="btn-1" class="btn btn-outline-primary" 
+                <a id="btn-1" class="btn btn-outline-primary"
                 [cModalToggle]="userModal.id"
-                 (click)="openUser(user.id)" 
+                 (click)="openUser(user.id)"
                 title="Details">
                   <i class="far fa-eye"></i>
                 </a>
-              <a
-                class="btn btn-success"
-             
-                title="Modifier"
-                ><i class="fa-solid fa-pen-to-square"></i
-              ></a>
                 <a class="btn btn-danger" title="Supprimer" (click)="deletePopUp(user.id)"
                   ><i class="fa-solid fa-trash"></i
                 ></a>

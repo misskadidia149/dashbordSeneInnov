@@ -57,7 +57,7 @@ export const navItems: INavData[] = [
     url: '/dashboard/notifications',
     iconComponent: { name: 'cil-envelope-closed' },
     badge: {
-      color: 'info',
+      color: 'success',
       text: 'NEW'
     }
   },
