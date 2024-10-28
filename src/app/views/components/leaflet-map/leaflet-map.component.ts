@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { UtilisateurService } from 'src/app/services/utilisateurs.service';
 @Component({
   selector: 'app-leaflet-map',
   standalone: true,
@@ -9,10 +10,11 @@ import * as L from 'leaflet';
   styleUrl: './leaflet-map.component.scss'
 })
 export class LeafletMapComponent implements OnInit {
+  longitude: any;
+  latitude: any;
   private map!: L.Map;
-  // private centroid: L.LatLngExpression = [42.3601, -71.0589]; // Boston
-  private centroid: L.LatLngExpression = [12.6306349,-8.027064]; // ODC Mali
-
+  private centroid: L.LatLngExpression = [12.6306349, -8.027064]; // ODC Mali
+  private customIcon!: L.Icon;
 
   // Méthode pour initialiser la carte
   private initMap(): void {
@@ -28,31 +30,50 @@ export class LeafletMapComponent implements OnInit {
     });
 
     // Définir une icône personnalisée avec l'image 'carte-des-broches.png'
-    const customIcon = L.icon({
-      iconUrl: 'assets/images/carte-des-broches.png', // Chemin vers ton icône
-      iconSize: [32, 32], // Taille de l'icône (32x32 pixels)
+    this.customIcon = L.icon({
+      iconUrl: 'assets/images/map.png', // Chemin vers ton icône
+      iconSize: [30, 40], // Taille de l'icône (42x42 pixels)l x L
       iconAnchor: [16, 32], // Point d'ancrage de l'icône (au milieu en bas)
       popupAnchor: [0, -32] // Position du popup par rapport à l'icône
     });
 
-    // Créer 5 marqueurs aléatoires autour du centre et leur appliquer l'icône personnalisée
-    // Array(5).fill(this.centroid).map(
-    //   (x: any) => [(x as [number, number])[0] + (Math.random() - 0.5) / 10, (x as [number, number])[1] + (Math.random() - 0.5) / 10]
-    // ).map(
-    //   x => L.marker(x as L.LatLngExpression, { icon: customIcon }) // Utilisation de l'icône personnalisée ici
-    // ).forEach(
-    //   x => x.addTo(this.map)
-    // );
-    const marker = L.marker(this.centroid, { icon: customIcon });
-    marker.addTo(this.map);
-
-
     tiles.addTo(this.map);
   }
 
-  constructor() {}
+  constructor(private utilisateurService: UtilisateurService) {}
 
   ngOnInit(): void {
     this.initMap();
+    this.getRobot();
+  }
+
+  robots: any;
+  NbreRobot: any;
+  getRobot(): void {
+    this.utilisateurService.getRobot().subscribe(
+      (data) => {
+        this.robots = data;
+        console.log(this.robots);
+        this.NbreRobot = this.robots.length;
+        this.longitude = this.robots.longitude
+        this.latitude = this.robots.latitude
+        console.log(this.longitude)
+        console.log(this.latitude)
+
+        // Ajout de chaque robot comme marqueur sur la carte
+        this.robots.forEach((robot: any) => {
+          const { longitude, latitude } = robot;
+          if (longitude && latitude) {
+            // Ajouter un marqueur pour chaque robot avec ses coordonnées
+            const marker = L.marker([latitude, longitude], { icon: this.customIcon });
+            marker.addTo(this.map).bindPopup(`Robot ID: ${robot.id}`);
+          }
+        });
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération', error);
+      }
+    );
   }
 }

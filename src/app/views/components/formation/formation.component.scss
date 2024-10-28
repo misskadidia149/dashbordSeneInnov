@@ -21,3 +21,8 @@
     margin-top: 4%;
     margin-left: 31%;
   }
+  .description-scroll {
+    max-height: 200px; /* Ajustez la hauteur selon vos besoins */
+    overflow-y: auto;
+  }
+  

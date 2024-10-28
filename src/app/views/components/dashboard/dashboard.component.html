@@ -112,12 +112,12 @@
   <c-col xs="12" lg="12">
     <c-card class="mb-4">
       <c-card-header>
-        Graphique
+        Graphiques
       </c-card-header>
       <c-card-body>
 
         <c-row>
-            <c-col xs="12" lg="6">
+            <!-- <c-col xs="12" lg="6">
               <c-card class="mb-4">
                 <c-card-header>
                   Doughnut Chart
@@ -126,21 +126,23 @@
                   <c-chart type="doughnut" [data]="chartDoughnutData" [options]="options" />
                 </c-card-body>
               </c-card>
-            </c-col>
-            <c-col xs="12" lg="6">
+            </c-col> -->
+            <c-col xs="12" lg="12">
               <c-card class="mb-4">
                 <c-card-header>
-                  Pie Chart
+                  Statistiques
                 </c-card-header>
                 <c-card-body>
-                  <c-chart type="pie" [data]="chartPieData" [options]="options" />
+                  <!-- <c-chart type="pie" [data]="chartPieData" [options]="options" /> -->
+                  <c-chart type="pie" [data]="chartPieData" [options]="options"></c-chart>
+
                 </c-card-body>
               </c-card>
             </c-col>
           </c-row>
 
         <!-- <c-chart type="bar" [data]="chartBarData" [options]="options" /> -->
-         
+
       </c-card-body>
     </c-card>
   </c-col>

@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
   readonly #document: Document = inject(DOCUMENT);
   readonly #renderer: Renderer2 = inject(Renderer2);
   readonly #chartsData: DashboardChartsData = inject(DashboardChartsData);
+  // chartPieData!: ChartData;
 
   public users: IUser[] = [
     {
@@ -161,6 +162,19 @@ export class DashboardComponent implements OnInit {
     this.getFormation();
     this.getUsers();
     this.getRobot();
+
+    //  // Initialisation des données du graphique (exemple statique)
+    //  this.chartPieData = {
+    //   labels: ['Catégories', 'Formations', 'Robots'],
+    //   datasets: [
+    //     {
+    //       data: [this.NbreCategorie, this.NbreFomation, this.NbreRobot],
+    //       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+    //       hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    //     }
+    //   ]
+    // };
+
   }
 
   initCharts(): void {
@@ -289,6 +303,7 @@ export class DashboardComponent implements OnInit {
       }
     ]
   };
+  
 
   chartDoughnutData: ChartData = {
     labels: ['VueJs', 'EmberJs', 'ReactJs', 'Angular'],
