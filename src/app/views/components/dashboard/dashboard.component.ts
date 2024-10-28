@@ -154,6 +154,7 @@ export class DashboardComponent implements OnInit {
   public trafficRadioGroup = new FormGroup({
     trafficRadio: new FormControl('Month')
   });
+  chartPieData: { labels: string[]; datasets: { data: number[]; backgroundColor: string[]; hoverBackgroundColor: string[]; }[]; } | undefined;
 
   ngOnInit(): void {
     this.initCharts();
@@ -162,19 +163,7 @@ export class DashboardComponent implements OnInit {
     this.getFormation();
     this.getUsers();
     this.getRobot();
-
-    //  // Initialisation des données du graphique (exemple statique)
-    //  this.chartPieData = {
-    //   labels: ['Catégories', 'Formations', 'Robots'],
-    //   datasets: [
-    //     {
-    //       data: [this.NbreCategorie, this.NbreFomation, this.NbreRobot],
-    //       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-    //       hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-    //     }
-    //   ]
-    // };
-
+    this.getChart();
   }
 
   initCharts(): void {
@@ -238,7 +227,7 @@ export class DashboardComponent implements OnInit {
     private utilisateurService: UtilisateurService) { }
 
     categories:any
-    NbreCategorie:any;
+    NbreCategorie: any;
   getCategories(): void {
     this.categorieService.getCategories().subscribe(
       (data: Categorie[]) => {
@@ -252,7 +241,7 @@ export class DashboardComponent implements OnInit {
   }
 
   formation:any;
-  NbreFomation:any;
+  NbreFomation: any;
   getFormation(): void {
     this.formationService.getAllFormation().subscribe(
       (data: Formation[]) => {
@@ -272,6 +261,7 @@ export class DashboardComponent implements OnInit {
       (data) => {
         this.robots = data;
         this.NbreRobot = this.robots.length;
+        this.getChart();
       },
       (error) => {
         console.error('Erreur lors de la récupération', error);
@@ -280,12 +270,14 @@ export class DashboardComponent implements OnInit {
   }
 
   utilisateurs: any;
-  NbreUser:any;
+  NbreUser: any;
   getUsers(): void {
     this.utilisateurService.getAllUser().subscribe(
       (data: User[]) => {
         this.utilisateurs = data;
-        this.NbreUser = this.utilisateurs.length
+        this.NbreUser = this.utilisateurs.length;
+        console.log(this.NbreUser);
+        this.getChart();
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
@@ -293,26 +285,29 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  chartPieData: ChartData = {
-    labels: ['Red', 'Green', 'Yellow'],
+  getChart(): void {
+    console.log(this.NbreUser, this.NbreRobot, this.NbreFomation, this.NbreCategorie)
+  this.chartPieData = {
+    labels: ['Utilisateur', 'Robots vendus', 'Formation', 'Catégories'],
     datasets: [
       {
-        data: [300, 50, 100],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+        data: [this.NbreUser, this.NbreRobot, this.NbreFomation, this.NbreCategorie],
+        // data: [200, 20, 70, 80, 100],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF9F40'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF9F40']
       }
     ]
   };
-  
+}
 
-  chartDoughnutData: ChartData = {
-    labels: ['VueJs', 'EmberJs', 'ReactJs', 'Angular'],
-    datasets: [
-      {
-        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-        data: [40, 20, 80, 10]
-      }
-    ]
-  };
+  // chartDoughnutData: ChartData = {
+  //   labels: ['VueJs', 'EmberJs', 'ReactJs', 'Angular'],
+  //   datasets: [
+  //     {
+  //       backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+  //       data: [40, 20, 80, 10]
+  //     }
+  //   ]
+  // };
 
 }
