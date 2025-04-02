@@ -141,7 +141,7 @@
             <div class="mb-9">
               <img
                 *ngIf="selectedCategory.image"
-                [src]="env.baseUrl + selectedCategory.image"
+                [src]="env.api + selectedCategory.image"
                 alt="image"
                 style="width: 100%; max-width: 100%; height: 300px; border-radius: 10px; object-fit: cover;"
               />
@@ -280,7 +280,7 @@
 					style="width: 100px; height: 90px;">
 				</div> -->
         <div>
-          <img *ngIf="sp.image" [src]="env.baseUrl + sp.image" alt="image" style="width: 100px; height: 90px;">
+          <img *ngIf="sp.image" [src]="env.api + sp.image" alt="image" style="width: 100px; height: 90px;">
         </div>
 				<div>
           <img *ngIf="!sp.image" src="src/assets/images/legumes.jpeg" alt="default image" style="width: 100px; height: 90px;">

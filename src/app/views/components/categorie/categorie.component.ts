@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // import { DocsExampleComponent } from '@docs-components/public-api';
 // import { categoriesComponent } from './categorie.component';
-import { Categorie } from 'src/app/models/categorie';
-import { CategorieService } from 'src/app/services/categorie.service'; // Assure-toi que le chemin est correct
-import { environment } from 'src/environments/environment';
+import { Categorie } from '../../../models/categorie';
+import { CategorieService } from '../../../services/categorie.service'; // Assure-toi que le chemin est correct
+import { environment } from '../../../../environments/environment';
 import Swal from 'sweetalert2';
 
 import { CommonModule } from '@angular/common';

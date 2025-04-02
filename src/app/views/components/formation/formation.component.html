@@ -193,7 +193,7 @@
               </div>
               <img
               *ngIf="selectedFormartion.image"
-              [src]="env.baseUrl + selectedFormartion.image"
+              [src]="env.api + selectedFormartion.image"
               alt="image" name="image"
               style="width: 100%; max-width: 100%; height: 300px; border-radius: 15px; object-fit: cover;"
             />
@@ -333,7 +333,7 @@
             </td>
           <td>
             <div>
-          <img *ngIf="f.image" [src]="env.baseUrl + f.image" alt="image" style="width: 100px; height: 90px;">
+          <img *ngIf="f.image" [src]="env.api + f.image" alt="image" style="width: 100px; height: 90px;">
         </div>
 				<div>
           <img *ngIf="!f.image" src="src/assets/images/legumes.jpeg" alt="default image" style="width: 100px; height: 90px;">

@@ -31,10 +31,10 @@ import {
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Agriculteur } from 'src/app/models/agriculteur';
-import { User } from 'src/app/models/utilisateurs';
-import { UtilisateurService } from 'src/app/services/utilisateurs.service';
-import { environment } from 'src/environments/environment';
+import { Agriculteur } from '../../../models/agriculteur';
+import { User } from '../../../models/utilisateurs';
+import { UtilisateurService } from '../../../services/utilisateurs.service';
+import { environment } from '../../../../environments/environment';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-utilisateurs',
@@ -160,9 +160,11 @@ export class UtilisateursComponent implements OnInit {
   getUtilisateurs(): void {
     this.utilisateurService.getAllUser().subscribe(
       (data: Agriculteur[]) => {
-        this.users = data; // Stockage des utilisateurs récupérés
+        this.utilisateurs = data; // Stockage des utilisateurs récupérés
+        // this.nomEtPrenom= this.users[0].nomEtPrenom;
+        // console.log(this.nomEtP  renom);
         console.log(data);
-        this.NbreUser = this.users.length;
+        this.NbreUser = this.utilisateurs.length;
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);

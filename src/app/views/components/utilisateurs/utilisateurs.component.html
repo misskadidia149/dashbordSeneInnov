@@ -186,7 +186,7 @@ Ajouter
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users
+          <tr *ngFor="let user of utilisateurs
             | paginate : { itemsPerPage: 4, currentPage: p };
           let id = index">
           <td>
@@ -194,7 +194,7 @@ Ajouter
           </td>
         
             <td>
-              <div class="txt">{{ user.username }}</div>
+              <div class="txt">{{ user.nomEtPrenom }}</div>
             </td>
             <td class="text-center" style="font-size: 13px;">
               {{ user.username }}

@@ -4,5 +4,6 @@ export interface User {
     username: string;
     telephone: string;
     password: string;
+    robot: any;
   }
   
